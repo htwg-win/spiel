@@ -1,6 +1,7 @@
 logs
 project/target
 target
+.target
 tmp
 .history
 dist
