@@ -1,0 +1,81 @@
+#vnamedialog {
+	display: none;
+	color: red;
+}
+
+
+body {
+	background-color: red;
+}
+
+#maincontent {
+	width: 400px;
+	height: 400px;
+	background-color: blue;
+	margin: 0px auto;
+}
+
+.fields {
+	background-color: green;
+}
+.clear {
+	clear: both;
+}
+
+#feld1 {
+	width: 100px;
+	height: 100px;
+	float: left;	
+}
+#feld2 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;	
+}
+#feld3 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;	
+}
+#feld4 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-top: 50px;	
+}
+#feld5 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;	
+}
+#feld6 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;	
+}
+#feld7 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-top: 50px;	
+}
+#feld8 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;	
+}
+#feld9 {
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;	
+}
