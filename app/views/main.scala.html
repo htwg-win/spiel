@@ -3,9 +3,35 @@
 <html>
     <head>
         <title>Just Play! Java</title>
+        <script type="text/javascript" src='@routes.Assets.at("javascripts/jquery.js")'></script>
+        <script type="text/javascript" src='@routes.Assets.at("javascripts/jquery-ui-1.10.4.min.js")'></script>
+        <script type="text/javascript" src='@routes.Assets.at("javascripts/index-js.js")'></script>
+        <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/index-css.css")'>
+        <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/jquery-ui-1.10.4.css")'>
     </head>
     <body>
-        <h1>Just Play! Java</h1>
-        <p>Test1</p>
+        <h1>Just Play! YOU little player</h1>
+        <div id="maincontent">
+        	<div id="feld1" class="fields">nummer 1</div>
+        	<div id="feld2" class="fields">nummer 2</div>
+        	<div id="feld3" class="fields">nummer 3</div>
+        	<div class="clear"></div>
+        	<div id="feld4" class="fields">nummer 4</div>
+        	<div id="feld5" class="fields">nummer 5</div>
+        	<div id="feld6" class="fields">nummer 6</div>
+        	<div class="clear"></div>
+        	<div id="feld7" class="fields">nummer 7</div>
+        	<div id="feld8" class="fields">nummer 8</div>
+        	<div id="feld9" class="fields">nummer 9</div>
+        	<div class="clear"></div>
+        	
+        	<div id="vnamedialog" title="Vorname ändern">
+				<form action="" method="get">
+					<input type="text" name="vorname" value="" id="vorname"/>
+					<input type="submit" name="abschicken" value="ändern"/>
+				</form>
+			</div>
+			
+        </div>
     </body>
 </html>
