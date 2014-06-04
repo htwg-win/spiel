@@ -11,18 +11,24 @@
     </head>
     <body>
         <h1>Just Play! YOU little player</h1>
+
+    	<div id="popupuser" title="Username eingeben:">
+			<input type="text" name="username" id="username" />
+			<div id="startgame">Spiel starten</div>
+		</div>
+
         <div id="maincontent">
-        	<div id="feld1" class="fields">nummer 1</div>
-        	<div id="feld2" class="fields">nummer 2</div>
-        	<div id="feld3" class="fields">nummer 3</div>
+        	<div id="feld1" class="fields" data-number="1">nummer 1</div>
+        	<div id="feld2" class="fields" data-number="2">nummer 2</div>
+        	<div id="feld3" class="fields" data-number="3">nummer 3</div>
         	<div class="clear"></div>
-        	<div id="feld4" class="fields">nummer 4</div>
-        	<div id="feld5" class="fields">nummer 5</div>
-        	<div id="feld6" class="fields">nummer 6</div>
+        	<div id="feld4" class="fields" data-number="4">nummer 4</div>
+        	<div id="feld5" class="fields" data-number="5">nummer 5</div>
+        	<div id="feld6" class="fields" data-number="6">nummer 6</div>
         	<div class="clear"></div>
-        	<div id="feld7" class="fields">nummer 7</div>
-        	<div id="feld8" class="fields">nummer 8</div>
-        	<div id="feld9" class="fields">nummer 9</div>
+        	<div id="feld7" class="fields" data-number="7">nummer 7</div>
+        	<div id="feld8" class="fields" data-number="8">nummer 8</div>
+        	<div id="feld9" class="fields" data-number="9">nummer 9</div>
         	<div class="clear"></div>
         	
         	<div id="vnamedialog" title="Vorname ändern">
@@ -31,6 +37,6 @@
 					<input type="submit" name="abschicken" value="ändern"/>
 				</form>
 			</div>
-			
         </div>
+        
 </html>

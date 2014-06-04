@@ -7,8 +7,21 @@
 body {
 	background-color: red;
 }
+#popupuser {
+}
+#username {
+}
+#startgame {
+	margin-left: -10px;
+	margin-top: 25px;
+	padding: 5px;
+	width: 101px;
+	height: auto;
+	background-color: green;
+}
 
 #maincontent {
+	display: none;
 	width: 400px;
 	height: 400px;
 	background-color: blue;
