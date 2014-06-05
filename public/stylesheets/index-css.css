@@ -1,11 +1,6 @@
-#vnamedialog {
-	display: none;
-	color: red;
-}
-
-
 body {
 	background-color: red;
+	font-size: 100%;
 }
 #popupuser {
 }
@@ -21,74 +16,78 @@ body {
 }
 
 #maincontent {
-	display: none;
-	width: 400px;
+	/* display: none; */
+	position: relative;
+	width: 50%;
 	height: 400px;
 	background-color: blue;
 	margin: 0px auto;
 }
 
+#maincontent2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: silver /* show me! */
+}
+
+#maincontent3 {
+    position: relative;
+    background-color: silver;
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+    margin: 0px auto;
+}
+
 .fields {
 	background-color: green;
+	width: 25%;
+	height: 25%;
 }
 .clear {
 	clear: both;
 }
 
 #feld1 {
-	width: 100px;
-	height: 100px;
-	float: left;	
+	position: absolute;
 }
 #feld2 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;	
+	position: absolute;
+	left: 30%;
+	background-color: yellow;
 }
 #feld3 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;	
+	position: absolute;
+	left: 60%;
 }
 #feld4 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-top: 50px;	
+	position: absolute;
+	top: 30%;
 }
 #feld5 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;
-	margin-top: 50px;	
+	position: absolute;
+	left: 30%;
+	top: 30%;
 }
 #feld6 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;
-	margin-top: 50px;	
+	position: absolute;
+	left: 60%;
+	top: 30%;
 }
 #feld7 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-top: 50px;	
+	position: absolute;
+	top: 60%;
 }
 #feld8 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;
-	margin-top: 50px;	
+	position: absolute;
+	left: 30%;
+	top: 60%;
 }
 #feld9 {
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 50px;
-	margin-top: 50px;	
+	position: absolute;
+	left: 60%;
+	top: 60%;	
 }
