@@ -2,10 +2,15 @@ body {
 	background-color: red;
 	font-size: 100%;
 }
+
 #popupuser {
+	
 }
+
 #username {
+	
 }
+
 #startgame {
 	margin-left: -10px;
 	margin-top: 25px;
@@ -25,69 +30,75 @@ body {
 }
 
 #maincontent2 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: silver /* show me! */
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: silver /* show me! */
 }
 
 #maincontent3 {
-    position: relative;
-    background-color: silver;
-    width: 50%;
-    height: 0;
-    padding-bottom: 50%;
-    margin: 0px auto;
+	position: absolute;
+	background-color: silver;
+	left: 20%;
+	right: 20%;
+	top: 20%;
+	bottom: 20%;
+	width: auto;
+	height: auto;
 }
 
 .fields {
 	background-color: green;
-	width: 25%;
-	height: 25%;
+	width: 15vh;
+	height: 15vh;
+	
+	position: absolute;
 }
+
 .clear {
 	clear: both;
 }
 
 #feld1 {
-	position: absolute;
+	
 }
+
 #feld2 {
-	position: absolute;
-	left: 30%;
+	left: 50%;
+	margin-left:-7.5vh;
 	background-color: yellow;
 }
+
 #feld3 {
-	position: absolute;
-	left: 60%;
+	right: 0%;
 }
+
 #feld4 {
-	position: absolute;
 	top: 30%;
 }
+
 #feld5 {
-	position: absolute;
 	left: 30%;
 	top: 30%;
 }
+
 #feld6 {
-	position: absolute;
-	left: 60%;
+	right: 0%;
 	top: 30%;
 }
+
 #feld7 {
-	position: absolute;
-	top: 60%;
+	bottom: 0%;
 }
+
 #feld8 {
-	position: absolute;
 	left: 30%;
-	top: 60%;
+	bottom: 0%;
 }
+
 #feld9 {
-	position: absolute;
-	left: 60%;
-	top: 60%;	
+	right: 0%;
+	bottom: 0%;
 }
