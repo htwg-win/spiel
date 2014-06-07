@@ -1,24 +1,6 @@
 body {
-	background-color: black;
-	
-}
-
-#anmeldung {
-	position: absolute;
-	left: 30%;
-	right: 30%;
-	top: 30%;
-	bottom: 30%;
 	background-color: silver;
-	text-align: center;
-}
-
-#startgame {
-	margin: 0 auto;
-	margin-top: 50px;
-	width: 101px;
-	height: auto;
-	background-color: green;
+	
 }
 
 #maincontent {
