@@ -1,5 +1,5 @@
 body {
-	background-color: red;
+	background-color: black;
 	font-size: 100%;
 }
 
@@ -34,19 +34,18 @@ body {
 #maincontent3 {
 	position: absolute;
 	background-color: silver;
-	left: 20%;
-	right: 20%;
-	top: 20%;
-	bottom: 20%;
+	left: 10%;
+	right: 10%;
+	top: 10%;
+	bottom: 10%;
 	width: auto;
 	height: auto;
 }
 
 .fields {
 	background-color: green;
-	width: 15vh;
-	height: 15vh;
-	
+	width: 30%;
+	height: 25vh;
 	position: absolute;
 }
 
@@ -60,7 +59,7 @@ body {
 
 #feld2 {
 	left: 50%;
-	margin-left:-7.5vh;
+	margin-left:-15%;
 	background-color: yellow;
 }
 
@@ -70,20 +69,20 @@ body {
 
 #feld4 {
 	top: 50%;
-	margin-top: -7.5vh;
+	margin-top: -12.5vh;
 }
 
 #feld5 {
 	left: 50%;
 	top: 50%;
-	margin-left: -7.5vh;
-	margin-top: -7.5vh;
+	margin-left: -15%;
+	margin-top: -12.5vh;
 }
 
 #feld6 {
 	right: 0%;
 	top: 50%;
-	margin-top: -7.5vh;
+	margin-top: -12.5vh;
 }
 
 #feld7 {
@@ -92,7 +91,7 @@ body {
 
 #feld8 {
 	left: 50%;
-	margin-left: -7.5vh;
+	margin-left: -15%;
 	bottom: 0%;
 }
 
