@@ -7,16 +7,20 @@ $().ready(function() {
 //		$("#maincontent").show("explode", "slow");
 //	})
 	
+	$("#login").on('click touchstart', function(){
+		$(".login").hide()
+		$("#maincontent").show();
+	})
+	
+	$("#create").on('click touchstart', function(){
+		$(".login").hide()
+		$("#maincontent").show();
+	})
 	
 	$d = $(document);
 	$d.on('click touchstart','.fields',function(e){
 				
 		alert(e.target.dataset.number);
 	});
-	
-//	var cw = $('.fields').width();
-//	$('.fields').css({
-//	    'height': cw + '%'
-//	});
 	
 });

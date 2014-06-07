@@ -1,9 +1,9 @@
 /* Abstände entfernen */
-.login-form,
-.login-form h1,
-.login-form span,
-.login-form input,
-.login-form label {
+.login,
+.login h1,
+.login span,
+.login input,
+.login label {
     margin: 0;
     padding: 0;
     border: 0;
@@ -11,7 +11,7 @@
 }
 
 /* Container Style */
-.login-form {
+.login {
     position: relative;
     width: 200px;
     height: 200px;
@@ -30,7 +30,7 @@
 }
 
 /* Überschrift formatiert */
-.login-form h1 {
+.login h1 {
     line-height: 40px;
     font-family: 'Myriad Pro', sans-serif;
     font-size: 22px;
@@ -39,9 +39,9 @@
 }
 
 /* Eingabefelder */
-.login-form input[type=text],
-.login-form input[type=password],
-.login-form input[type=submit] {
+.login input[type=text],
+.login input[type=password],
+.login input[type=submit] {
     line-height: 14px;
     margin: 10px 0;
     padding: 6px 15px;
@@ -87,7 +87,7 @@
 }
 
 /* Login Button */
-.login-form input[type=submit] {
+.login input[type=submit] {
     cursor: pointer;
     color: #445b0f;
     -webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
@@ -95,7 +95,7 @@
     box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
 }
 
-.login-form span {
+.login span {
     position: relative;
     margin-top: 15px;
     float: left;
