@@ -22,7 +22,6 @@ body {
 
 #maincontent {
 	position: absolute;
-	background-color: silver;
 	left: 10%;
 	right: 10%;
 	top: 10%;
@@ -33,58 +32,45 @@ body {
 
 .fields {
 	background-color: green;
-	width: 30%;
+	width: 32%;
 	height: 25vh;
 	position: absolute;
-	border-radius: 5vmin;
+	border-radius: 2vmin;
 }
-
-.clear {
-	clear: both;
-}
-
 #feld1 {
 	left: 0%;
 }
-
 #feld2 {
 	left: 50%;
-	margin-left:-15%;
+	margin-left: -16%;
 	background-color: yellow;
 }
-
 #feld3 {
 	right: 0%;
 }
-
 #feld4 {
 	top: 50%;
 	margin-top: -12.5vh;
 }
-
 #feld5 {
 	left: 50%;
 	top: 50%;
-	margin-left: -15%;
+	margin-left: -16%;
 	margin-top: -12.5vh;
 }
-
 #feld6 {
 	right: 0%;
 	top: 50%;
 	margin-top: -12.5vh;
 }
-
 #feld7 {
 	bottom: 0%;
 }
-
 #feld8 {
 	left: 50%;
-	margin-left: -15%;
+	margin-left: -16%;
 	bottom: 0%;
 }
-
 #feld9 {
 	right: 0%;
 	bottom: 0%;
