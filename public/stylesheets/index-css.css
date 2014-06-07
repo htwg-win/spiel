@@ -1,26 +1,28 @@
 body {
 	background-color: black;
-	font-size: 50px;
-}
-
-#popupuser {
 	
 }
 
-#username {
-	
+#anmeldung {
+	position: absolute;
+	left: 30%;
+	right: 30%;
+	top: 30%;
+	bottom: 30%;
+	background-color: silver;
+	text-align: center;
 }
 
 #startgame {
-	margin-left: -10px;
-	margin-top: 25px;
-	padding: 5px;
+	margin: 0 auto;
+	margin-top: 50px;
 	width: 101px;
 	height: auto;
 	background-color: green;
 }
 
 #maincontent {
+	display: none;
 	position: absolute;
 	left: 10%;
 	right: 10%;
@@ -35,7 +37,11 @@ body {
 	width: 32%;
 	height: 25vh;
 	position: absolute;
-	border-radius: 2vmin;
+	font-size: 50px;
+	-webkit-border-radius: 2vmin;
+    -moz-border-radius: 2vmin;
+    border-radius: 2vmin;
+	
 }
 #feld1 {
 	left: 0%;
@@ -43,7 +49,6 @@ body {
 #feld2 {
 	left: 50%;
 	margin-left: -16%;
-	background-color: yellow;
 }
 #feld3 {
 	right: 0%;
