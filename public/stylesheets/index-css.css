@@ -21,21 +21,14 @@ body {
 }
 
 #maincontent {
-	/* display: none; */
-	position: relative;
-	width: 50%;
-	height: 400px;
-	background-color: blue;
-	margin: 0px auto;
-}
-
-#maincontent2 {
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: silver /* show me! */
+	background-color: silver;
+	left: 20%;
+	right: 20%;
+	top: 20%;
+	bottom: 20%;
+	width: auto;
+	height: auto;
 }
 
 #maincontent3 {
@@ -62,7 +55,7 @@ body {
 }
 
 #feld1 {
-	
+	left: 0%;
 }
 
 #feld2 {
@@ -76,17 +69,21 @@ body {
 }
 
 #feld4 {
-	top: 30%;
+	top: 50%;
+	margin-top: -7.5vh;
 }
 
 #feld5 {
-	left: 30%;
-	top: 30%;
+	left: 50%;
+	top: 50%;
+	margin-left: -7.5vh;
+	margin-top: -7.5vh;
 }
 
 #feld6 {
 	right: 0%;
-	top: 30%;
+	top: 50%;
+	margin-top: -7.5vh;
 }
 
 #feld7 {
@@ -94,7 +91,8 @@ body {
 }
 
 #feld8 {
-	left: 30%;
+	left: 50%;
+	margin-left: -7.5vh;
 	bottom: 0%;
 }
 
