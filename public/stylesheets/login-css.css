@@ -40,7 +40,8 @@
 /* Eingabefelder */
 .login input[type=text],
 .login input[type=password],
-.login input[type=submit] {
+.login input[type=submit],
+.logoutbutton {
     line-height: 14px;
     margin: 10px 0;
     padding: 6px 15px;

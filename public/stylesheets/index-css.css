@@ -1,10 +1,10 @@
 body {
-	background-color: silver;
+	/* background-color: silver; */
 	
 }
 
-#maincontent {
-	/* display: none; */
+/* #maincontent {
+	display: none;
 	position: absolute;
 	left: 10%;
 	right: 10%;
@@ -12,35 +12,44 @@ body {
 	bottom: 10%;
 	width: auto;
 	height: auto;
-}
-
+} */
+/* Menü */
 #menu {
 	position: absolute;
-	top: 0%;
-	bottom: 0%;
-	left: 0%;
-	right: 75%;
+	top: 10%;
+	bottom: 10%;
+	left: 10%;
+	right: 72%;
 	width: auto;
-	height: 100%;
+	height: auto;
 	-webkit-border-radius: 2vmin;
     -moz-border-radius: 2vmin;
     border-radius: 2vmin;
-	background-color: black;
+	/* background-color: black; */
+}
+#logout{
+	position: absolute;
+	left: 2.5%;
+	cursor: pointer;
+    color: #445b0f;
+    background-color: buttonface;
+    -webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    -moz-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
 }
 
+/* Felder */
 #fields {
-	float: left;
 	position: absolute;
-	top: 0%;
-	bottom: 0%;
-	left: 26%;
-	right: 0%;
+	top: 10%;
+	bottom: 10%;
+	left: 29%;
+	right: 10%;
 	width: auto;
 }
-
 .fields {
 	background-color: green;
-	width: 32%;
+	width: 32.3%;
 	height: 25vh;
 	position: absolute;
 	font-size: 50px;

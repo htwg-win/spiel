@@ -1,7 +1,17 @@
-@media screen and (max-width: 480px) { /* Auflösung <= 480px */
+body {
+		background-color: yellow;
+	}
+#menu {
+	background-color: yellow;
+}
+
+
+@media (max-width: 480px) {
+	body {
+		background-color: yellow;
+	}
 	#fields {
-		position: static;
-		width: auto; /* volle Breite */
+		position: absolute;
 	}
 	#menu {
 		width: auto;
@@ -15,7 +25,4 @@
 	#page {
 		width: 1080px; /* 1200px - 10% für die margins */
 	}
-}
-body {
-	background-color: yellow;
 }
