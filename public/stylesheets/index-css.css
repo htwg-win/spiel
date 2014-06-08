@@ -4,7 +4,7 @@ body {
 }
 
 #maincontent {
-	display: none;
+	/* display: none; */
 	position: absolute;
 	left: 10%;
 	right: 10%;
