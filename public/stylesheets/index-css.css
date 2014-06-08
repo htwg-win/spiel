@@ -2,19 +2,8 @@ body {
 	/* background-color: silver; */
 	
 }
-
-/* #maincontent {
-	display: none;
-	position: absolute;
-	left: 10%;
-	right: 10%;
-	top: 10%;
-	bottom: 10%;
-	width: auto;
-	height: auto;
-} */
-/* Menü */
 #menu {
+	display: none;
 	position: absolute;
 	top: 10%;
 	bottom: 10%;
@@ -25,7 +14,7 @@ body {
 	-webkit-border-radius: 2vmin;
     -moz-border-radius: 2vmin;
     border-radius: 2vmin;
-	/* background-color: black; */
+	background-color: black;
 }
 #logout{
 	position: absolute;
@@ -40,12 +29,14 @@ body {
 
 /* Felder */
 #fields {
+	display: none;
 	position: absolute;
 	top: 10%;
 	bottom: 10%;
 	left: 29%;
 	right: 10%;
 	width: auto;
+	background-color: pink;
 }
 .fields {
 	background-color: green;
@@ -66,32 +57,29 @@ body {
 	margin-left: -16%;
 }
 #feld3 {
-	right: 0%;
+	left: 67.7777%;
 }
 #feld4 {
-	top: 50%;
-	margin-top: -12.5vh;
+	top: 34.3333%;
 }
 #feld5 {
 	left: 50%;
-	top: 50%;
+	top: 34.3333%;
 	margin-left: -16%;
-	margin-top: -12.5vh;
 }
 #feld6 {
-	right: 0%;
-	top: 50%;
-	margin-top: -12.5vh;
+	left: 67.7777%;
+	top: 34.3333%;
 }
 #feld7 {
-	bottom: 0%;
+	top: 68.7777%;
 }
 #feld8 {
 	left: 50%;
 	margin-left: -16%;
-	bottom: 0%;
+	top: 68.7777%;
 }
 #feld9 {
-	right: 0%;
-	bottom: 0%;
+	left: 67.7777%;
+	top: 68.7777%;
 }
