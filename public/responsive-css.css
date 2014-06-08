@@ -1,0 +1,21 @@
+@media screen and (max-width: 480px) { /* Auflösung <= 480px */
+	#fields {
+		position: static;
+		width: auto; /* volle Breite */
+	}
+	#menu {
+		width: auto;
+	}
+	.main,.sidebar {
+		float: none; /* Floats aufheben */
+	}
+}
+
+@media screen and (min-width: 1200px) { /* >= 1200px */
+	#page {
+		width: 1080px; /* 1200px - 10% für die margins */
+	}
+}
+body {
+	background-color: yellow;
+}
