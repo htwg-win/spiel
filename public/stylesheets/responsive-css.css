@@ -23,7 +23,7 @@
 	}
 	#menu {
 		position: absolute;
-		top: 90vh;
+		top: 83vh;
 		left: 0%;
 		right: 0%;
 		height: 300px;
@@ -33,11 +33,6 @@
 		background-color: black;
 	}
 	#chat {
-		position: absolute;
-		top: 82vh;
-		left: 0%;
-		right: 0%;
-		height: 25px;
-		background-color: aqua;
+		visibility: hidden;
 	}
 }

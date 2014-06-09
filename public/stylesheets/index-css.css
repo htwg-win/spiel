@@ -8,10 +8,10 @@ body {
 #menu {
 	display: none;
 	position: absolute;
-	top: 7%;
-	bottom: 13%;
+	top: 10%;
+	bottom: 10%;
 	left: 10%;
-	right: 69%;
+	right: 61%;
 	width: auto;
 	height: auto;
 	background-color: black;
@@ -31,9 +31,9 @@ body {
 #fields {
 	display: none;
 	position: absolute;
-	top: 7%;
-	bottom: 13%;
-	left: 32%;
+	top: 10%;
+	bottom: 10%;
+	left: 40%;
 	right: 10%;
 	width: auto;
 	height: 80vh;
@@ -80,19 +80,42 @@ body {
 	left: 67.7777%;
 	top: 55vh;
 }
-.borders {
+.corners {
 	-webkit-border-radius: 2vmin;
     -moz-border-radius: 2vmin;
     border-radius: 2vmin;
 }
 /* Chat */
 #chat {
-	display: none;
 	position: absolute;
-	top: 89%;
-	left: 10%;
-	right: 10%;
+	bottom: 0%;
+	left: 0%;
+	right: 0%;
 	width: auto;
 	padding: 0.25em;
 	background-color: aqua;
+}
+#textfeld {
+	line-height: 22px;
+	width: 100%;
+    border: 0;
+    outline: none;
+    font-family: Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px rgba(255,255,255, .2);
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    border-radius: 26px;
+    transition: all .15s ease-in-out;
+    padding: 0.25em;
+}
+#messagewindow {
+	position: absolute;
+	padding: 0.25em;
+	top: 60%;
+	bottom: 0%;
+	left: 0%;
+	right: 0%;
+	background-color: white;
 }
