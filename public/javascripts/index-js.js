@@ -5,17 +5,20 @@ $().ready(function() {
 		$(".login").hide()
 		$("#fields").show()
 		$("#menu").show();
+		$("#chat").show();
 	})
 	$("#create").on('click touchstart', function(){
 		$(".login").hide()
 		$("#fields").show()
 		$("#menu").show();
+		$("#chat").show();
 	})
 	
 	$("#logout").on('click touchstart', function(){
 		$(".login").show()
 		$("#fields").hide()
 		$("#menu").hide();
+		$("#chat").hide();
 	})
 	
 	$d = $(document);
