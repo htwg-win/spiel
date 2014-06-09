@@ -32,11 +32,11 @@
 		background-color: black;
 	}
 	#chat {
-	display: none;
-	position: static;
-	width: 100%;
-	margin-top: 2vh;
-	height: 25px;
-	background-color: aqua;
-}
+		display: none;
+		position: static;
+		width: 100%;
+		margin-top: 2vh;
+		height: 25px;
+		background-color: aqua;
+	}
 }
