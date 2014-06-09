@@ -54,6 +54,7 @@ Event.readyTrigger();
  */
 var GameAPI = (function() {
 	var self = this;
+	var keepalive_timeout = null;
 	/**
 	 * 
 	 */
@@ -92,6 +93,15 @@ var GameAPI = (function() {
 		}
 
 		self.socket = Socket;
+
+		clearInterval(keepalive_timeout);
+		keepalive_timeout = window.setInterval(function() {
+			if (Socket.readyState != 1) {
+				console.log("NO WS CON");
+				SocketInit();
+			}
+		}, 1000);
+
 	}
 
 	/**
@@ -107,7 +117,7 @@ var GameAPI = (function() {
 		var raw = {
 			name : Event,
 			data : Data
-		};
+		};	
 		Socket.send(JSON.stringify(raw));
 	}
 

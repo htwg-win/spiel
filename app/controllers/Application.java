@@ -1,13 +1,6 @@
 package controllers;
 
-import org.apache.http.auth.UsernamePasswordCredentials;
-
 import models.Game;
-
-import com.fasterxml.jackson.databind.JsonNode;
-
-import play.libs.F.Callback;
-import play.libs.F.Callback0;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -29,9 +22,7 @@ public class Application extends Controller {
 
 			// Called when the Websocket Handshake is done.
 			public void onReady(WebSocket.In<String> in, WebSocket.Out<String> out) {
-
-				System.out.println(username);
-				Game.join(username, in, out);
+				Game.register(in,out);
 			}
 
 		};
