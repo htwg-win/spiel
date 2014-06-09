@@ -8,12 +8,9 @@ body {
 	top: 10%;
 	bottom: 10%;
 	left: 10%;
-	right: 72%;
+	right: 69%;
 	width: auto;
 	height: auto;
-	-webkit-border-radius: 2vmin;
-    -moz-border-radius: 2vmin;
-    border-radius: 2vmin;
 	background-color: black;
 }
 #logout{
@@ -33,7 +30,7 @@ body {
 	position: absolute;
 	top: 10%;
 	bottom: 10%;
-	left: 29%;
+	left: 32%;
 	right: 10%;
 	width: auto;
 	height: 80vh;
@@ -45,10 +42,6 @@ body {
 	height: 25vh;
 	position: absolute;
 	font-size: 50px;
-	-webkit-border-radius: 2vmin;
-    -moz-border-radius: 2vmin;
-    border-radius: 2vmin;
-	
 }
 #feld1 {
 	left: 0%;
@@ -83,4 +76,18 @@ body {
 #feld9 {
 	left: 67.7777%;
 	top: 55vh;
+}
+.borders {
+	-webkit-border-radius: 2vmin;
+    -moz-border-radius: 2vmin;
+    border-radius: 2vmin;
+}
+#chat {
+	display: none;
+	position: absolute;
+	top: 91%;
+	left: 10%;
+	right: 10%;
+	width: auto;
+	background-color: aqua;
 }
