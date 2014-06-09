@@ -36,6 +36,7 @@ body {
 	left: 29%;
 	right: 10%;
 	width: auto;
+	height: 80vh;
 	background-color: pink;
 }
 .fields {
@@ -60,26 +61,26 @@ body {
 	left: 67.7777%;
 }
 #feld4 {
-	top: 34.3333%;
+	top: 27.5vh;
 }
 #feld5 {
 	left: 50%;
-	top: 34.3333%;
+	top: 27.5vh;
 	margin-left: -16%;
 }
 #feld6 {
 	left: 67.7777%;
-	top: 34.3333%;
+	top: 27.5vh;
 }
 #feld7 {
-	top: 68.7777%;
+	top: 55vh;
 }
 #feld8 {
 	left: 50%;
 	margin-left: -16%;
-	top: 68.7777%;
+	top: 55vh;
 }
 #feld9 {
 	left: 67.7777%;
-	top: 68.7777%;
+	top: 55vh;
 }
