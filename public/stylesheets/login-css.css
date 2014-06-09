@@ -1,0 +1,103 @@
+/* Abstände entfernen */
+.login,
+.login h1,
+.login span,
+.login input,
+.login label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+/* Container Style */
+.login {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    padding: 15px 25px 0 25px;
+    margin: 0 auto;
+    cursor: default;
+    background-color: #141517;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+ 
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+    box-shadow: 0px 1px 1px 0px rgba(255,255,255, .2), inset 0px 1px 1px 0px rgb(0,0,0);
+}
+
+/* Überschrift formatiert */
+.login h1 {
+    line-height: 40px;
+    font-family: 'Myriad Pro', sans-serif;
+    font-size: 22px;
+    font-weight: normal;
+    color: #e4e4e4;
+}
+
+/* Eingabefelder */
+.login input[type=text],
+.login input[type=password],
+.login input[type=submit],
+.logoutbutton {
+    line-height: 14px;
+    margin: 10px 0;
+    padding: 6px 15px;
+    border: 0;
+    outline: none;
+ 
+    font-family: Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px rgba(255,255,255, .2);
+ 
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    border-radius: 26px;
+ 
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -o-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+.textlength {
+	width: 170px;
+}
+#login {
+	position: absolute;
+	top: 70%;
+	left: 10%;
+
+}
+#create {
+	position: absolute;
+	top: 70%;
+	right: 10%;
+}
+#or {
+	position: absolute;
+	top: 65%;
+	left: 45%;
+	font-family: 'Myriad Pro', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    color: #e4e4e4;
+}
+
+/* Login Button */
+.login input[type=submit] {
+    cursor: pointer;
+    color: #445b0f;
+    -webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    -moz-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+}
+
+.login span {
+    position: relative;
+    margin-top: 15px;
+    float: left;
+}
+

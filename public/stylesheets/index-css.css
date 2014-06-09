@@ -1,0 +1,86 @@
+body {
+	/* background-color: silver; */
+	
+}
+#menu {
+	display: none;
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	left: 10%;
+	right: 72%;
+	width: auto;
+	height: auto;
+	-webkit-border-radius: 2vmin;
+    -moz-border-radius: 2vmin;
+    border-radius: 2vmin;
+	background-color: black;
+}
+#logout{
+	position: absolute;
+	left: 2.5%;
+	cursor: pointer;
+    color: #445b0f;
+    background-color: buttonface;
+    -webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    -moz-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+    box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+}
+
+/* Felder */
+#fields {
+	display: none;
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	left: 29%;
+	right: 10%;
+	width: auto;
+	height: 80vh;
+	background-color: pink;
+}
+.fields {
+	background-color: green;
+	width: 32.3%;
+	height: 25vh;
+	position: absolute;
+	font-size: 50px;
+	-webkit-border-radius: 2vmin;
+    -moz-border-radius: 2vmin;
+    border-radius: 2vmin;
+	
+}
+#feld1 {
+	left: 0%;
+}
+#feld2 {
+	left: 50%;
+	margin-left: -16%;
+}
+#feld3 {
+	left: 67.7777%;
+}
+#feld4 {
+	top: 27.5vh;
+}
+#feld5 {
+	left: 50%;
+	top: 27.5vh;
+	margin-left: -16%;
+}
+#feld6 {
+	left: 67.7777%;
+	top: 27.5vh;
+}
+#feld7 {
+	top: 55vh;
+}
+#feld8 {
+	left: 50%;
+	margin-left: -16%;
+	top: 55vh;
+}
+#feld9 {
+	left: 67.7777%;
+	top: 55vh;
+}
