@@ -90,6 +90,9 @@ var GameAPI = (function() {
 		Socket.onclose = function() {
 			console.log("WS Connection Closed");
 			Event.trigger('socket.close', [ Socket ]);
+
+			// retry
+			SocketInit();
 		}
 
 		self.socket = Socket;
@@ -117,7 +120,7 @@ var GameAPI = (function() {
 		var raw = {
 			name : Event,
 			data : Data
-		};	
+		};
 		Socket.send(JSON.stringify(raw));
 	}
 
