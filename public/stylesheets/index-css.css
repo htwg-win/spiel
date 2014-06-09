@@ -8,8 +8,8 @@ body {
 #menu {
 	display: none;
 	position: absolute;
-	top: 10%;
-	bottom: 10%;
+	top: 7%;
+	bottom: 13%;
 	left: 10%;
 	right: 69%;
 	width: auto;
@@ -31,8 +31,8 @@ body {
 #fields {
 	display: none;
 	position: absolute;
-	top: 10%;
-	bottom: 10%;
+	top: 7%;
+	bottom: 13%;
 	left: 32%;
 	right: 10%;
 	width: auto;
@@ -85,12 +85,14 @@ body {
     -moz-border-radius: 2vmin;
     border-radius: 2vmin;
 }
+/* Chat */
 #chat {
 	display: none;
 	position: absolute;
-	top: 91%;
+	top: 89%;
 	left: 10%;
 	right: 10%;
 	width: auto;
+	padding: 0.25em;
 	background-color: aqua;
 }
