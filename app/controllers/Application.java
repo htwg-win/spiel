@@ -17,12 +17,11 @@ public class Application extends Controller {
 	}
 
 	public static WebSocket<String> socket() {
-		final String username = Http.Context.current().session().get("username");
 		return new WebSocket<String>() {
 
 			// Called when the Websocket Handshake is done.
 			public void onReady(WebSocket.In<String> in, WebSocket.Out<String> out) {
-				Game.register(in,out);
+				Game.register(in, out);
 			}
 
 		};

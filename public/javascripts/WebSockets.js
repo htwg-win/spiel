@@ -55,6 +55,8 @@ Event.readyTrigger();
 var GameAPI = (function() {
 	var self = this;
 	var keepalive_timeout = null;
+	var hearbeat_interval = 15 * 1000;
+	var heartbeat_interval_p = null;
 	/**
 	 * 
 	 */
@@ -72,6 +74,13 @@ var GameAPI = (function() {
 		Socket.onopen = function() {
 			console.log("WS Connection Opened");
 			Event.trigger('socket.open', [ Socket ]);
+
+			window.clearInterval(heartbeat_interval_p);
+			heartbeat_interval_p = window.setInterval(function() {
+				console.log("heartbeat");
+				Socket.send('{"name":"heartbeat","data":{}}');
+			}, hearbeat_interval);
+
 		}
 
 		Socket.onmessage = function(evt) {
