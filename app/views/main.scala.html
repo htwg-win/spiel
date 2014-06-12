@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <title>webtech games</title>
-	<script type="text/javascript" src='@routes.Assets.at("javascripts/jquery.js")'></script>
-	<script type="text/javascript" src='@routes.Assets.at("javascripts/jquery-ui-1.10.4.min.js")'></script>
-	<script type="text/javascript" src='@routes.Assets.at("javascripts/index-js.js")'></script>
-	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/index-css.css")'>
-	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/login-css.css")'>
-	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/responsive-css.css")'>
-	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/jquery-ui-1.10.4.css")'>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/index-css.css")'>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/login-css.css")'>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/responsive-css.css")'>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/jquery-ui-1.10.4.css")'>
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/app.css")'>
 </head>
 <body>
+	<div id="notify"></div>
 	<div class="login">
 		<h1>Login</h1>
 		<form action="#">
-			<input class="textlength" type="text" name="username"
-				placeholder="username"> <input class="textlength"
-				type="password" name="password" placeholder="password">
+			<input class="textlength" type="text" name="username" id="username" placeholder="username"> <input id="password" class="textlength" type="password" name="password" placeholder="password">
 			<div>
 				<input type="button" value="log in" id="login">
 				<p id="or">or</p>
@@ -25,17 +21,15 @@
 			</div>
 		</form>
 	</div>
-
-
 	<div id="menu" class="corners">
 		<input type="button" id="logout" class="logoutbutton" value="logout">
-		<div id="messagewindow" class="corners">Ich bin die Nachricht
+		<div id="messagewindow" class="corners">
+			Ich bin die Nachricht
 			<div id="chat" class="corners">
 				<input type="text" id="textfeld" placeholder="Nachricht:">
 			</div>
 		</div>
 	</div>
-
 	<div id="fields">
 		<div id="feld1" class="fields corners" data-number="1">1</div>
 		<div id="feld2" class="fields corners" data-number="2">2</div>
@@ -47,5 +41,8 @@
 		<div id="feld8" class="fields corners" data-number="8">8</div>
 		<div id="feld9" class="fields corners" data-number="9">9</div>
 	</div>
-	
+	<script src='@routes.Assets.at("javascripts/WebSockets.js")' type="text/javascript"></script>
+	<script type="text/javascript" src='@routes.Assets.at("javascripts/jquery.js")'></script>
+	<script type="text/javascript" src='@routes.Assets.at("javascripts/jquery-ui-1.10.4.min.js")'></script>
+	<script type="text/javascript" src='@routes.Assets.at("javascripts/index-js.js")'></script>
 </html>

@@ -1,0 +1,46 @@
+#notify {
+	position: absolute;
+	top: 10px;
+	left: -250px;
+	margin-left: 50%;
+	width: 500px;
+	display: none;
+	padding: 10px;
+	font-family: arial;
+	width: 500px;
+	padding: 10px;
+	width: 500px;
+}
+
+#notify.active {
+	display: block;
+	z-index: 300;
+}
+
+#notify div {
+	padding: 7px;
+	border-radius: 7px;
+	margin: 5px;
+	opacity: 1;
+	-webkit-transition: all 2s ease-out;
+	box-shadow: 5px 5px 9px rgba(0, 0, 0, .3);
+	border: 1px solid #cccccc;
+	background: rgba(255, 255, 255, 1);
+	opacity: 1;
+}
+
+#notify div.disable {
+	opacity: 0;
+}
+
+.error {
+	color: #cf4d69;
+}
+
+.info {
+	color: #00bdec;
+}
+
+.success {
+	color: #5dd571
+}

@@ -88,7 +88,7 @@ var GameAPI = (function() {
 			var data = JSON.parse(evt.data);
 			var name = data.name;
 			var d = data.data;
-			Event.trigger('socket.on' + name, d);
+			Event.trigger(name, d);
 		};
 
 		Socket.onerror = function(err) {
@@ -133,11 +133,52 @@ var GameAPI = (function() {
 		Socket.send(JSON.stringify(raw));
 	}
 
-	this.receive = function(Event, Callback) {
-		Event.on('socket.on' + Event, Callback);
+	this.receive = function(name, Callback) {
+		Event.on(name, Callback);
 	}
 
 });
 
+var Alert = new function() {
+	var element = document.querySelector('#notify');
+	var messageQueue = [];
+
+	this.show = function(type, str) {
+		var f = document.createElement("div");
+
+		element.insertBefore(f, element.firstChild);
+		f.className = type;
+		f.innerHTML = str;
+		element.className = "active";
+		window.setTimeout(function() {
+			element.removeChild(f);
+
+			if (element.childNodes.length == 0) {
+				element.className = "";
+			}
+
+		}, 5000);
+
+		window.setTimeout(function() {
+			f.className = "disable";
+
+		}, 3000);
+
+	}
+
+}
+
 var Game = new GameAPI();
 Game.init();
+
+Game.receive("notify.error", function(d) {
+	Alert.show("error", d.message);
+});
+
+Game.receive("notify.info", function(d) {
+	Alert.show("info", d.message);
+});
+
+Game.receive("notify.success", function(d) {
+	Alert.show("success", d.message);
+});
