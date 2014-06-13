@@ -24,9 +24,12 @@ $().ready(function() {
 
 	$d = $(document);
 	$d.on('click touchstart', '.fields', function(e) {
+		e.preventDefault();
+		SoundBank.play(this.dataset.number);
 
-		alert(e.target.dataset.number);
 	});
+	
+	
 
 });
 

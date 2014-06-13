@@ -182,3 +182,34 @@ Game.receive("notify.info", function(d) {
 Game.receive("notify.success", function(d) {
 	Alert.show("success", d.message);
 });
+
+/**
+ * Sound FX Bank
+ */
+var SoundBank = (new function() {
+
+	this.Default = "piano";
+	this.current = this.Default;
+	var clips = [];
+	this.clips = clips;
+
+	this.load = function(Instrument) {
+		for (var i = 1; i <= 9; ++i) {
+			var audioElement = document.createElement('audio');
+			audioElement.setAttribute('src', '/assets/afx/' + Instrument + "/" + i + ".mp3");
+			audioElement.load();
+			clips.push(audioElement);
+		}
+
+		this.current = Instrument;
+	}
+
+	this.play = function(tone) {
+		var f = this.clips[tone-1];
+		f.load();
+		f.play();
+	}
+
+	this.load(this.Default);
+
+});
