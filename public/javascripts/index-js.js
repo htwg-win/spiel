@@ -21,12 +21,6 @@ $().ready(function() {
 		location.href = location.href;
 	})
 
-	$d.on('click touchstart', '.fields', function(e) {
-		e.preventDefault();
-		piano.play(this.dataset.number);
-		this.classList.toggle("active");
-
-	});
 
 });
 

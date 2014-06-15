@@ -191,30 +191,125 @@ Game.receive("user.login.success", function(d) {
 });
 
 Game.receive("game.start", function(d) {
-
-	var c = document.createElement("div");
-	c.id = "countdown";
-	c.innerHTML = '<div id="number-1">1</div><div id="number-2">2</div><div id="number-3">3</div>';
-	document.body.appendChild(c);
-
-	c.className = "active";
-
+	Alert.show("success", "new Game starting in " + d.startIn + "s");
 	window.setTimeout(function() {
-		countdown.play(3);
-	}, 1000 * 0);
+		GameUI.load(d.sequence);
 
-	window.setTimeout(function() {
-		countdown.play(2);
-	}, 1000 * 1);
+		console.log(d.sequence);
+		var c = document.createElement("div");
+		c.id = "countdown";
+		c.innerHTML = '<div id="number-1">1</div><div id="number-2">2</div><div id="number-3">3</div>';
+		document.body.appendChild(c);
 
-	window.setTimeout(function() {
-		countdown.play(1);
-	}, 1000 * 2);
+		c.className = "active";
 
-	window.setTimeout(function() {
-		countdown.play(4);
-		document.body.removeChild(c)
-	}, 1000 * 3);
+		window.setTimeout(function() {
+			countdown.play(3);
+		}, 1000 * 0);
+
+		window.setTimeout(function() {
+			countdown.play(2);
+		}, 1000 * 1);
+
+		window.setTimeout(function() {
+			countdown.play(1);
+		}, 1000 * 2);
+
+		window.setTimeout(function() {
+			countdown.play(4);
+			document.body.removeChild(c)
+			GameUI.start();
+		}, 1000 * 3);
+
+	}, d.startIn * 1000);
+
+});
+
+var GameUI = (new function() {
+	var sequence = {};
+	var current_sequence = 0;
+	var start_time = 0;
+	var isPlaying = false;
+	var buttons = [];
+	var self = this;
+	for (var i = 0; i < 9; ++i) {
+		buttons[i] = $('#feld' + (i + 1))[0];
+	}
+
+	var loadSequence = function(seq) {
+		current_sequence = seq;
+
+		if (seq >= sequence.lenth) {
+			finish();
+		}
+		for (var x = 0; x < sequence[seq].length; ++x) {
+			var n = sequence[seq][x] - 1;
+
+			if (n == -1) {
+				sequence[current_sequence].splice(x, 1);
+				continue;
+			}
+			buttons[sequence[seq][x] - 1].classList.add("active");
+		}
+
+	}
+
+	var gameOver = function() {
+		buzzer.play(1);
+		console.log("gameover");
+	}
+
+	var win = function() {
+
+	}
+
+	var finish = function() {
+		console.log("finish");
+
+	}
+
+	this.load = function(seq) {
+		sequence = seq;
+
+	}
+	this.start = function() {
+		isPlaying = true;
+		loadSequence(0);
+		start_time = 0 + new Date();
+	}
+
+	/**
+	 * events
+	 */
+
+	$(document).on("click touchstart", '.fields', function(e) {
+		e.preventDefault();
+		if (!isPlaying)
+			return;
+		var index = sequence[current_sequence].indexOf(parseInt(this.dataset.number));
+		if (index != -1) {
+
+			piano.play(this.dataset.number);
+			this.classList.toggle("active");
+			if (sequence[current_sequence].length == 1) {
+				// next sequence
+				loadSequence(++current_sequence);
+			} else {
+				sequence[current_sequence].splice(index, 1);
+			}
+
+			if (sequence[current_sequence].length == 0) {
+				// next sequence
+				loadSequence(++current_sequence);
+			}
+
+			console.log(sequence);
+		} else {
+			gameOver();
+
+		}
+
+	});
 
 });
 
@@ -350,6 +445,8 @@ var SoundBank = (function(Instrument, Amount) {
 var piano = new SoundBank("piano", 9);
 var countdown = new SoundBank("countdown", 4);
 var offend = new SoundBank("offend", 6);
+var buzzer = new SoundBank("buzzer", 1);
+
 Element.prototype.remove = function() {
 	this.parentElement.removeChild(this);
 }
