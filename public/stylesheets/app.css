@@ -50,10 +50,102 @@ body,html {
 }
 
 #chat-content {
-	height: 270px;
+	height: 85%;
 	overflow-y: scroll;
 }
 
 .typing {
 	color: #ccc;
+}
+
+.fields {
+	background: url(../gfx/button.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 10vh;
+	width: 18vw;
+	text-align: center;
+	padding-top: 5vh;
+	font-size: 5vh;
+	color: #FFF;
+	-webkit-transition: color 0s ease-in, opacity .25s ease-in, -webkit-transform .25s linear;
+	-webkit-transition-delay: .25s, .25s, 0s;
+	opacity: .8;
+	display: inline-block;
+
+
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: deactive;
+	-webkit-animation-duration: .5s;
+	-webkit-animation-delay: 0s;
+}
+
+.fields.active {
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: #4ab0ff;
+	opacity: 1;
+
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: active;
+	-webkit-animation-duration: .5s;
+	-webkit-animation-delay: 0s;
+	z-index:1;
+}
+
+@-webkit-keyframes active {
+	0% {
+		color:#FFF;
+		
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(0deg);
+	}
+	
+	50%
+	{
+		background: url(../gfx/button_active.png);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(90deg);
+	}
+	100% {
+		background: url(../gfx/button_active.png);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(0deg);
+	}
+}
+
+
+
+@-webkit-keyframes deactive {
+	0% {
+		
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(0deg);
+	}
+	
+	50%
+	{
+		background: url(../gfx/button.png);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(90deg);
+	}
+	100% {
+		background: url(../gfx/button.png);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-transform: rotateY(0deg);
+	}
 }

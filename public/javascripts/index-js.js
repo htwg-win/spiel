@@ -1,28 +1,30 @@
 var $d;
 
 $().ready(function() {
-	$("#login").on('click touchstart', function() {
+
+	$d = $(document);
+	$d.on('click touchstart', '#login', function() {
 		Game.send("user.login", {
 			username : $('#username').val(),
 			password : $('#password').val()
 		})
 
 	})
-	$("#create").on('click touchstart', function() {
+	$d.on('click touchstart', "#create", function() {
 		$(".login").hide()
 		$("#fields").show()
 		$("#menu").show();
 		$("#chat").show();
 	})
 
-	$("#logout").on('click touchstart', function() {
+	$d.on('click touchstart', "#logout", function() {
 		location.href = location.href;
 	})
 
-	$d = $(document);
 	$d.on('click touchstart', '.fields', function(e) {
 		e.preventDefault();
 		piano.play(this.dataset.number);
+		this.classList.toggle("active");
 
 	});
 
