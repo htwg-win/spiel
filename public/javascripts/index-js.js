@@ -25,7 +25,7 @@ $().ready(function() {
 	$d = $(document);
 	$d.on('click touchstart', '.fields', function(e) {
 		e.preventDefault();
-		SoundBank.play(this.dataset.number);
+		piano.play(this.dataset.number);
 
 	});
 	

@@ -57,6 +57,8 @@ var GameAPI = (function() {
 	var keepalive_timeout = null;
 	var hearbeat_interval = 15 * 1000;
 	var heartbeat_interval_p = null;
+	this.userInfo = {};
+
 	/**
 	 * 
 	 */
@@ -183,10 +185,114 @@ Game.receive("notify.success", function(d) {
 	Alert.show("success", d.message);
 });
 
+Game.receive("user.login.success", function(d) {
+	Game.userInfo.username = $('#username').val();
+});
+
+Game.receive("game.start", function(d) {
+
+	document.querySelector("#countdown");
+
+	window.setTimeout(function() {
+		countdown.play(3);
+	}, 1000 * 0);
+
+	window.setTimeout(function() {
+		countdown.play(2);
+	}, 1000 * 1);
+
+	window.setTimeout(function() {
+		countdown.play(1);
+	}, 1000 * 2);
+
+	window.setTimeout(function() {
+		countdown.play(4);
+	}, 1000 * 3);
+
+});
+
+/**
+ * 
+ */
+var Chat = (new function() {
+
+	var parent = document.querySelector("#chat-content");
+	var input = document.querySelector("#textfeld");
+	var typing_timeout = null;
+	var isTyping = false;
+	parent.innerHTML = "";
+
+	input.addEventListener('keydown', function(e) {
+
+		window.clearTimeout(typing_timeout);
+		typing_timeout = window.setTimeout(function() {
+			Game.send('chat.typing.stop', {
+				from : Game.userInfo.username,
+			});
+
+			isTyping = false;
+		}, 2000);
+
+		if (!isTyping) {
+			Game.send('chat.typing.start', {
+				from : Game.userInfo.username,
+			});
+
+			isTyping = true;
+		}
+
+		if (e.which == 13 && input.value != "") {
+			Game.send('chat.message', {
+				from : Game.userInfo.username,
+				message : input.value
+			});
+
+			input.value = "";
+		}
+	});
+
+	Game.receive("chat.message", function(d) {
+
+		var msg = document.createElement("div");
+		msg.className = "message";
+		msg.innerHTML = '<b>' + d.from + '</b> ' + d.message;
+		parent.appendChild(msg);
+		try {
+			document.querySelector("#typing-" + d.from).remove();
+		} catch (e) {
+
+		}
+
+		parent.scrollTop = parent.scrollHeight;
+	});
+
+	Game.receive("chat.typing.start", function(d) {
+
+		var msg = document.createElement("div");
+		msg.className = "message";
+		msg.id = 'typing-' + d.from;
+
+		msg.innerHTML = '<i>' + d.from + ' is typing...</i>';
+
+		parent.appendChild(msg);
+
+		parent.scrollTop = parent.scrollHeight;
+
+	});
+
+	Game.receive("chat.typing.stop", function(d) {
+		document.querySelector("#typing-" + d.from).remove();
+
+		parent.scrollTop = parent.scrollHeight;
+
+	});
+
+});
+
 /**
  * Sound FX Bank
  */
-var SoundBank = (new function() {
+var SoundBank = (function(Instrument, Amount) {
 
 	this.Default = "piano";
 	this.current = this.Default;
@@ -194,7 +300,7 @@ var SoundBank = (new function() {
 	this.clips = clips;
 
 	this.load = function(Instrument) {
-		for (var i = 1; i <= 9; ++i) {
+		for (var i = 1; i <= Amount; ++i) {
 			var audioElement = document.createElement('audio');
 			audioElement.setAttribute('src', '/assets/afx/' + Instrument + "/" + i + ".mp3");
 			audioElement.load();
@@ -205,11 +311,25 @@ var SoundBank = (new function() {
 	}
 
 	this.play = function(tone) {
-		var f = this.clips[tone-1];
+		var f = this.clips[tone - 1];
 		f.load();
 		f.play();
 	}
 
-	this.load(this.Default);
+	this.load(Instrument);
 
 });
+
+var piano = new SoundBank("piano", 9);
+var countdown = new SoundBank("countdown", 4);
+
+Element.prototype.remove = function() {
+	this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+	for (var i = 0, len = this.length; i < len; i++) {
+		if (this[i] && this[i].parentElement) {
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
+}

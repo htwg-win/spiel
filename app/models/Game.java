@@ -118,6 +118,12 @@ public class Game {
 
 			returnCode = -1;
 			break;
+
+		default:
+
+			// dispatch to all clients s default
+			trigger(event, Data);
+			break;
 		}
 
 		return returnCode;

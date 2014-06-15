@@ -44,3 +44,8 @@
 .success {
 	color: #5dd571
 }
+
+#chat-content {
+	height: 285px;
+	overflow: scroll;
+}
