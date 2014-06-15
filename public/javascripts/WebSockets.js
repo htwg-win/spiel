@@ -222,8 +222,18 @@ var Chat = (new function() {
 	var isTyping = false;
 	parent.innerHTML = "";
 
-	input.addEventListener('keydown', function(e) {
+	document.addEventListener('keydown', function(e) {
+		// offend the shit out of opponents
+		if (e.which == 79) {
+			Game.send('chat.offend', {
+				from : Game.userInfo.username,
+			});
+		}
 
+	});
+
+	input.addEventListener('keydown', function(e) {
+		e.stopPropagation();
 		window.clearTimeout(typing_timeout);
 		typing_timeout = window.setTimeout(function() {
 			Game.send('chat.typing.stop', {
@@ -255,7 +265,7 @@ var Chat = (new function() {
 
 		var msg = document.createElement("div");
 		msg.className = "message";
-		msg.innerHTML = '<b>' + d.from + '</b> ' + d.message;
+		msg.innerHTML = '<b>' + escapeHtml(d.from) + '</b> ' + escapeHtml(d.message);
 		parent.appendChild(msg);
 		try {
 			document.querySelector("#typing-" + d.from).remove();
@@ -266,19 +276,33 @@ var Chat = (new function() {
 		parent.scrollTop = parent.scrollHeight;
 	});
 
+	Game.receive("chat.offend", function(d) {
+
+		if (d.from != Game.userInfo.username) {
+			offend.play(getRandomInt(1, 6));
+		}
+
+		var msg = document.createElement("div");
+		msg.className = "typing";
+		msg.innerHTML = '<i>' + escapeHtml(d.from) + ' offended everyone</i>';
+		parent.appendChild(msg);
+		parent.scrollTop = parent.scrollHeight;
+
+	});
+
 	Game.receive("chat.typing.start", function(d) {
 
 		var msg = document.createElement("div");
 		msg.className = "typing";
-		msg.id = 'typing-' + d.from;
-		msg.innerHTML = '<i>' + d.from + ' is typing...</i>';
+		msg.id = 'typing-' + escapeHtml(d.from);
+		msg.innerHTML = '<i>' + escapeHtml(d.from) + ' is typing...</i>';
 		parent.appendChild(msg);
 		parent.scrollTop = parent.scrollHeight;
 
 	});
 
 	Game.receive("chat.typing.stop", function(d) {
-		document.querySelector("#typing-" + d.from).remove();
+		document.querySelector("#typing-" + escapeHtml(d.from)).remove();
 		parent.scrollTop = parent.scrollHeight;
 
 	});
@@ -318,7 +342,7 @@ var SoundBank = (function(Instrument, Amount) {
 
 var piano = new SoundBank("piano", 9);
 var countdown = new SoundBank("countdown", 4);
-
+var offend = new SoundBank("offend", 6);
 Element.prototype.remove = function() {
 	this.parentElement.removeChild(this);
 }
@@ -328,4 +352,27 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 			this[i].parentElement.removeChild(this[i]);
 		}
 	}
+}
+
+var entityMap = {
+	"&" : "&amp;",
+	"<" : "&lt;",
+	">" : "&gt;",
+	'"' : '&quot;',
+	"'" : '&#39;',
+	"/" : '&#x2F;'
+};
+
+function escapeHtml(string) {
+	return String(string).replace(/[&<>"'\/]/g, function(s) {
+		return entityMap[s];
+	});
+}
+
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive) Using
+ * Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }

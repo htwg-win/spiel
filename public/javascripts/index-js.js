@@ -16,10 +16,7 @@ $().ready(function() {
 	})
 
 	$("#logout").on('click touchstart', function() {
-		$(".login").show()
-		$("#fields").hide()
-		$("#menu").hide();
-		$("#chat").hide();
+		location.href = location.href;
 	})
 
 	$d = $(document);
@@ -28,8 +25,6 @@ $().ready(function() {
 		piano.play(this.dataset.number);
 
 	});
-	
-	
 
 });
 
