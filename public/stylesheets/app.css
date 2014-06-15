@@ -149,3 +149,84 @@ body,html {
 		-webkit-transform: rotateY(0deg);
 	}
 }
+
+
+#countdown
+{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background:rgba(0,0,0,.5);
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	z-index:200;
+	-webkit-transition: opacity .25s ease-in;
+}
+
+#countdown.active
+{
+	opacity:1;
+}
+
+#countdown div
+{
+	color:#FFF;
+	text-align:center;
+	top:25vh;
+	opacity:1;
+	width:100%;
+	height:100%;
+	position:fixed;
+	font-size:50vh;
+	-webkit-transition:all .1s ease-in;
+	opacity:0;
+	text-shadow: 2px 2px 15px #000;
+}
+
+.active #number-3
+{
+
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: countdown;
+	-webkit-animation-duration: 1.5s;
+	-webkit-animation-delay: 0s;
+}
+
+.active #number-2
+{
+
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: countdown;
+	-webkit-animation-duration: 1.5s;
+	-webkit-animation-delay: 1s;
+}
+
+.active #number-1
+{
+	
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: countdown;
+	-webkit-animation-duration: 1.5s;
+	-webkit-animation-delay: 2s;
+}
+
+@-webkit-keyframes countdown {
+	0% {
+		
+		opacity:0;
+		font-size:200vh;
+		top:-50vh;
+	}
+	
+	50%
+	{
+		opacity:1;
+	}
+	100% {
+		opacity:0;
+		font-size:1vh;
+		top:40vh;
+	}
+}
+

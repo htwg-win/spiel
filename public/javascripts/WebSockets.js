@@ -173,6 +173,7 @@ var Alert = new function() {
 var Game = new GameAPI();
 Game.init();
 
+/** Game events */
 Game.receive("notify.error", function(d) {
 	Alert.show("error", d.message);
 });
@@ -191,7 +192,12 @@ Game.receive("user.login.success", function(d) {
 
 Game.receive("game.start", function(d) {
 
-	document.querySelector("#countdown");
+	var c = document.createElement("div");
+	c.id = "countdown";
+	c.innerHTML = '<div id="number-1">1</div><div id="number-2">2</div><div id="number-3">3</div>';
+	document.body.appendChild(c);
+
+	c.className = "active";
 
 	window.setTimeout(function() {
 		countdown.play(3);
@@ -207,6 +213,7 @@ Game.receive("game.start", function(d) {
 
 	window.setTimeout(function() {
 		countdown.play(4);
+		document.body.removeChild(c)
 	}, 1000 * 3);
 
 });
@@ -241,7 +248,7 @@ var Chat = (new function() {
 			});
 
 			isTyping = false;
-		}, 2000);
+		}, 1000);
 
 		if (!isTyping) {
 			Game.send('chat.typing.start', {
@@ -376,4 +383,3 @@ function escapeHtml(string) {
 function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
