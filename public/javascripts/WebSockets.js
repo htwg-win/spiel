@@ -269,20 +269,16 @@ var Chat = (new function() {
 	Game.receive("chat.typing.start", function(d) {
 
 		var msg = document.createElement("div");
-		msg.className = "message";
+		msg.className = "typing";
 		msg.id = 'typing-' + d.from;
-
 		msg.innerHTML = '<i>' + d.from + ' is typing...</i>';
-
 		parent.appendChild(msg);
-
 		parent.scrollTop = parent.scrollHeight;
 
 	});
 
 	Game.receive("chat.typing.stop", function(d) {
 		document.querySelector("#typing-" + d.from).remove();
-
 		parent.scrollTop = parent.scrollHeight;
 
 	});

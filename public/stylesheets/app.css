@@ -1,3 +1,7 @@
+body,html {
+	font-family: Arial;
+}
+
 #notify {
 	position: absolute;
 	top: 10px;
@@ -46,6 +50,10 @@
 }
 
 #chat-content {
-	height: 285px;
-	overflow: scroll;
+	height: 270px;
+	overflow-y: scroll;
+}
+
+.typing {
+	color: #ccc;
 }
