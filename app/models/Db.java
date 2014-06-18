@@ -1,5 +1,7 @@
 package models;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
 public class Db {
@@ -41,49 +43,71 @@ public class Db {
 
 	public boolean create(String username, String password) {
 		Db.getConnection();
-		//Pseudocode, Code zu hashen erstellen des Salt folgen noch
+		try {
+		ResultSet rsLogin = stmt
+				.executeQuery("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = '"
+						+ username + "';");
+		String userDatabase = rsLogin.getString("username");
+		if (!username.equals(userDatabase)) {
+			return false;
+		}
+
 		String hashpassword = "";
-		String salt = "";
+		try {
+			hashpassword = PasswordHash.createHash(password);
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InvalidKeySpecException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String salt = PasswordHash.getSaltString();
 		String sqlCreate = "INSERT INTO USER (USERNAME, PASSWORD, SALT)"
 				+ "VALUES ('" + username + "','" + hashpassword + "','" + salt
 				+ "');";
-		try {
+		
 			stmt.executeUpdate(sqlCreate);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally{
+		} finally {
 			Db.closeConnection();
 		}
-		return false;
+		return true;
 	}
 
-	public boolean login(String username, String password) {
+	public boolean login(String username, String password)
+			throws NoSuchAlgorithmException, InvalidKeySpecException {
 		Db.getConnection();
-		//Pseudocode, Code zum Hashen und wiedererstellen des Passwort folgen noch
+
 		String hashpassword = "";
+		String userDatabase_2 = "";
+
 		try {
-			ResultSet rsLogin= stmt
-					.executeQuery("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = '" + username + "';");
-			rsLogin.first();
-			if(!username.equals(rsLogin.getString("username"))){
-			return false;}
-			
-			hashpassword = rsLogin.getString("password") + rsLogin.getString("salt");
+			ResultSet rsLogin = stmt
+					.executeQuery("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = '"
+							+ username + "';");
+			userDatabase_2 = rsLogin.getString("username");
+
+			if (!username.equals(userDatabase_2)) {
+				return false;
+			}
+
+			hashpassword = rsLogin.getString("password");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally{
+		} finally {
 			Db.closeConnection();
 		}
-		if(!password.equals(hashpassword)){
-			return false;}
-		else{
+
+		if (!PasswordHash.validatePassword(password, hashpassword)) {
+			return false;
+		} else {
 			return true;
-			}
-		
+		}
+
 	}
 
 	public void win(String username) {
@@ -100,20 +124,18 @@ public class Db {
 		}
 	}
 
-	public String highscores() {
+	public String[] highscores() {
 		Db.getConnection();
 
-		String highscoretable = "";
+		String[] highscoretable = new String[10];
 
 		try {
 			ResultSet rsTable = stmt
 					.executeQuery("SELECT USERNAME, WINS FROM USER ORDER BY WINS DESC LIMIT 10;");
-
+			int i = 0;
 			while (rsTable.next()) {
 				int wins = rsTable.getInt("wins");
-				highscoretable = highscoretable + rsTable.getString("username")
-						+ wins + "\n";
-				;
+				highscoretable[i] = rsTable.getString("username") + ":" + wins;
 
 			}
 		} catch (SQLException e) {
