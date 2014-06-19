@@ -1,228 +1,226 @@
-body,html {
-	font-family: Arial;
+body, html {
+    font-family: Arial;
 }
 
 #notify {
-	position: absolute;
-	top: 10px;
-	left: -250px;
-	margin-left: 50%;
-	width: 500px;
-	display: none;
-	padding: 10px;
-	font-family: arial;
-	width: 500px;
-	padding: 10px;
-	width: 500px;
+    position: absolute;
+    top: 10px;
+    left: -250px;
+    margin-left: 50%;
+    width: 500px;
+    display: none;
+    padding: 10px;
+    font-family: arial;
+    width: 500px;
+    padding: 10px;
+    width: 500px;
 }
 
 #notify.active {
-	display: block;
-	z-index: 300;
+    display: block;
+    z-index: 300;
 }
 
 #notify div {
-	padding: 7px;
-	border-radius: 7px;
-	margin: 5px;
-	opacity: 1;
-	-webkit-transition: all 2s ease-out;
-	box-shadow: 5px 5px 9px rgba(0, 0, 0, .3);
-	border: 1px solid #cccccc;
-	background: rgba(255, 255, 255, 1);
-	opacity: 1;
+    padding: 7px;
+    border-radius: 7px;
+    margin: 5px;
+    opacity: 1;
+    -webkit-transition: all 2s ease-out;
+    box-shadow: 5px 5px 9px rgba(0, 0, 0, .3);
+    border: 1px solid #cccccc;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
 }
 
 #notify div.disable {
-	opacity: 0;
+    opacity: 0;
 }
 
 .error {
-	color: #cf4d69;
+    color: #cf4d69;
 }
 
 .info {
-	color: #00bdec;
+    color: #00bdec;
 }
 
 .success {
-	color: #5dd571
+    color: #5dd571
 }
 
 .typing {
-	color: #ccc;
+    color: #ccc;
 }
 
 .fields {
-	position: absolute;
-	background: url(../gfx/button.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 10vh;
-	width: 32.3%;
-	text-align: center;
-	padding-top: 5vh;
-	font-size: 5vh;
-	color: #FFF;
-	-webkit-transition: color 0s ease-in, opacity .25s ease-in, -webkit-transform .25s linear;
-	-webkit-transition-delay: .25s, .25s, 0s;
-	opacity: .8;
-	display: inline-block;
+    position: absolute;
+    background: url(../gfx/button.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 10vh;
+    width: 32.3%;
+    text-align: center;
+    padding-top: 5vh;
+    font-size: 5vh;
+    color: #FFF;
+    -webkit-transition: color 0s ease-in, opacity .25s ease-in, -webkit-transform .25s linear;
+    -webkit-transition-delay: .25s, .25s, 0s;
+    opacity: .8;
+    display: inline-block;
 
-
-	-webkit-animation-fill-mode: forwards;
-	-webkit-animation-name: deactive;
-	-webkit-animation-duration: .5s;
-	-webkit-animation-delay: 0s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: deactive;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-delay: 0s;
 }
 
 .fields.active {
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	color: #4ab0ff;
-	opacity: 1;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: #4ab0ff;
+    opacity: 1;
 
-	-webkit-animation-fill-mode: forwards;
-	-webkit-animation-name: active;
-	-webkit-animation-duration: .5s;
-	-webkit-animation-delay: 0s;
-	z-index:1;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: active;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-delay: 0s;
+    z-index: 1;
 }
 
 @-webkit-keyframes active {
-	0% {
-		color:#FFF;
-		
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(0deg);
-	}
-	
-	50%
-	{
-		background: url(../gfx/button_active.png);
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(90deg);
-	}
-	100% {
-		background: url(../gfx/button_active.png);
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(0deg);
-	}
+    0% {
+        color: #FFF;
+
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(0deg);
+    }
+
+    50% {
+        background: url(../gfx/button_active.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(90deg);
+    }
+    100% {
+        background: url(../gfx/button_active.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(0deg);
+    }
 }
-
-
 
 @-webkit-keyframes deactive {
-	0% {
-		
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(0deg);
-	}
-	
-	50%
-	{
-		background: url(../gfx/button.png);
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(90deg);
-	}
-	100% {
-		background: url(../gfx/button.png);
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		-webkit-transform: rotateY(0deg);
-	}
+    0% {
+
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(0deg);
+    }
+
+    50% {
+        background: url(../gfx/button.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(90deg);
+    }
+    100% {
+        background: url(../gfx/button.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        -webkit-transform: rotateY(0deg);
+    }
 }
 
-
-#countdown
-{
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	background:rgba(0,0,0,.5);
-	top: 0px;
-	left: 0px;
-	opacity: 0;
-	z-index:200;
-	-webkit-transition: opacity .25s ease-in;
+#countdown {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, .5);
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    z-index: 200;
+    -webkit-transition: opacity .25s ease-in;
 }
 
-#countdown.active
-{
-	opacity:1;
+#countdown.active {
+    opacity: 1;
 }
 
-#countdown div
-{
-	color:#FFF;
-	text-align:center;
-	top:25vh;
-	opacity:1;
-	width:100%;
-	height:100%;
-	position:fixed;
-	font-size:50vh;
-	-webkit-transition:all .1s ease-in;
-	opacity:0;
-	text-shadow: 2px 2px 15px #000;
+#countdown div {
+    color: #FFF;
+    text-align: center;
+    top: 25vh;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    font-size: 50vh;
+    -webkit-transition: all .1s ease-in;
+    opacity: 0;
+    text-shadow: 2px 2px 15px #000;
 }
 
-.active #number-3
-{
+.active #number-3 {
 
-	-webkit-animation-fill-mode: forwards;
-	-webkit-animation-name: countdown;
-	-webkit-animation-duration: 1.5s;
-	-webkit-animation-delay: 0s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: countdown;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-delay: 0s;
 }
 
-.active #number-2
-{
+.active #number-2 {
 
-	-webkit-animation-fill-mode: forwards;
-	-webkit-animation-name: countdown;
-	-webkit-animation-duration: 1.5s;
-	-webkit-animation-delay: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: countdown;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-delay: 1s;
 }
 
-.active #number-1
-{
-	
-	-webkit-animation-fill-mode: forwards;
-	-webkit-animation-name: countdown;
-	-webkit-animation-duration: 1.5s;
-	-webkit-animation-delay: 2s;
+.active #number-1 {
+
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-name: countdown;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-delay: 2s;
 }
 
 @-webkit-keyframes countdown {
-	0% {
-		
-		opacity:0;
-		font-size:200vh;
-		top:-50vh;
-	}
-	
-	50%
-	{
-		opacity:1;
-	}
-	100% {
-		opacity:0;
-		font-size:1vh;
-		top:40vh;
-	}
+    0% {
+
+        opacity: 0;
+        font-size: 200vh;
+        top: -50vh;
+    }
+
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        font-size: 1vh;
+        top: 40vh;
+    }
 }
 
+#highscore {
+    position: absolute;
+    top: 50px;
+    color: #FFF;
+    left: 15px;
+}
+
+#highscore div {
+    display: block;
+    margin: 5px 0px;
+}

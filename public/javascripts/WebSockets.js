@@ -1,8 +1,8 @@
-var Event = new (function() {
+var Event = new (function () {
 	var isReady = false;
 	var events = {};
 	var params = {};
-	this.ready = function(f) {
+	this.ready = function (f) {
 		if (isReady) {
 			f.call(this, params['ready']);
 		} else {
@@ -10,12 +10,12 @@ var Event = new (function() {
 		}
 	}
 
-	this.readyTrigger = function() {
+	this.readyTrigger = function () {
 		isReady = true;
 		this.trigger('ready');
 	}
 
-	this.trigger = function(e, p) {
+	this.trigger = function (e, p) {
 
 		if (typeof events[e] == "object") {
 
@@ -35,14 +35,14 @@ var Event = new (function() {
 		}
 	}
 
-	this.on = function(e, f) {
+	this.on = function (e, f) {
 		if (typeof events[e] != "object") {
 			events[e] = [];
 		}
 		events[e].push(f);
 	}
 
-	this.off = function(e) {
+	this.off = function (e) {
 		events[e] = null;
 	}
 
@@ -50,9 +50,9 @@ var Event = new (function() {
 Event.readyTrigger();
 
 /**
- * 
+ *
  */
-var GameAPI = (function() {
+var GameAPI = (function () {
 	var self = this;
 	var keepalive_timeout = null;
 	var hearbeat_interval = 15 * 1000;
@@ -60,32 +60,31 @@ var GameAPI = (function() {
 	this.userInfo = {};
 
 	/**
-	 * 
+	 *
 	 */
-	const
-	URL = "ws://" + location.hostname + (location.port ? ':' + location.port : '') + "/socket";
+	const URL = "ws://" + location.hostname + (location.port ? ':' + location.port : '') + "/socket";
 
 	var Socket;
 
 	/**
-	 * 
+	 *
 	 */
 	function SocketInit() {
 		Socket = new WebSocket(URL);
 
-		Socket.onopen = function() {
+		Socket.onopen = function () {
 			console.log("WS Connection Opened");
 			Event.trigger('socket.open', [ Socket ]);
 
 			window.clearInterval(heartbeat_interval_p);
-			heartbeat_interval_p = window.setInterval(function() {
+			heartbeat_interval_p = window.setInterval(function () {
 				console.log("heartbeat");
 				Socket.send('{"name":"heartbeat","data":{}}');
 			}, hearbeat_interval);
 
 		}
 
-		Socket.onmessage = function(evt) {
+		Socket.onmessage = function (evt) {
 			console.log("Data received: " + evt.data);
 			var data = JSON.parse(evt.data);
 			var name = data.name;
@@ -93,12 +92,12 @@ var GameAPI = (function() {
 			Event.trigger(name, d);
 		};
 
-		Socket.onerror = function(err) {
+		Socket.onerror = function (err) {
 
 			console.log(err);
 		}
 
-		Socket.onclose = function() {
+		Socket.onclose = function () {
 			console.log("WS Connection Closed");
 			Event.trigger('socket.close', [ Socket ]);
 
@@ -109,7 +108,7 @@ var GameAPI = (function() {
 		self.socket = Socket;
 
 		clearInterval(keepalive_timeout);
-		keepalive_timeout = window.setInterval(function() {
+		keepalive_timeout = window.setInterval(function () {
 			if (Socket.readyState != 1) {
 				console.log("NO WS CON");
 				SocketInit();
@@ -119,40 +118,40 @@ var GameAPI = (function() {
 	}
 
 	/**
-	 * 
+	 *
 	 */
-	this.init = function() {
+	this.init = function () {
 
 		// Init Socket
 		SocketInit();
 	}
 
-	this.send = function(Event, Data) {
+	this.send = function (Event, Data) {
 		var raw = {
-			name : Event,
-			data : Data
+			name: Event,
+			data: Data
 		};
 		Socket.send(JSON.stringify(raw));
 	}
 
-	this.receive = function(name, Callback) {
+	this.receive = function (name, Callback) {
 		Event.on(name, Callback);
 	}
 
 });
 
-var Alert = new function() {
+var Alert = new function () {
 	var element = document.querySelector('#notify');
 	var messageQueue = [];
 
-	this.show = function(type, str) {
+	this.show = function (type, str) {
 		var f = document.createElement("div");
 
 		element.insertBefore(f, element.firstChild);
 		f.className = type;
 		f.innerHTML = str;
 		element.className = "active";
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			element.removeChild(f);
 
 			if (element.childNodes.length == 0) {
@@ -161,7 +160,7 @@ var Alert = new function() {
 
 		}, 5000);
 
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			f.className = "disable";
 
 		}, 3000);
@@ -174,25 +173,25 @@ var Game = new GameAPI();
 Game.init();
 
 /** Game events */
-Game.receive("notify.error", function(d) {
+Game.receive("notify.error", function (d) {
 	Alert.show("error", d.message);
 });
 
-Game.receive("notify.info", function(d) {
+Game.receive("notify.info", function (d) {
 	Alert.show("info", d.message);
 });
 
-Game.receive("notify.success", function(d) {
+Game.receive("notify.success", function (d) {
 	Alert.show("success", d.message);
 });
 
-Game.receive("user.login.success", function(d) {
+Game.receive("user.login.success", function (d) {
 	Game.userInfo.username = $('#username').val();
 });
 
-Game.receive("game.start", function(d) {
+Game.receive("game.start", function (d) {
 	Alert.show("success", "new Game starting in " + d.startIn + "s");
-	window.setTimeout(function() {
+	window.setTimeout(function () {
 		GameUI.load(d.sequence);
 
 		console.log(d.sequence);
@@ -203,19 +202,19 @@ Game.receive("game.start", function(d) {
 
 		c.className = "active";
 
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			countdown.play(3);
 		}, 1000 * 0);
 
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			countdown.play(2);
 		}, 1000 * 1);
 
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			countdown.play(1);
 		}, 1000 * 2);
 
-		window.setTimeout(function() {
+		window.setTimeout(function () {
 			countdown.play(4);
 			document.body.removeChild(c)
 			GameUI.start();
@@ -225,7 +224,7 @@ Game.receive("game.start", function(d) {
 
 });
 
-var GameUI = (new function() {
+var GameUI = (new function () {
 	var sequence = {};
 	var current_sequence = 0;
 	var start_time = 0;
@@ -236,7 +235,7 @@ var GameUI = (new function() {
 		buttons[i] = $('#feld' + (i + 1))[0];
 	}
 
-	var loadSequence = function(seq) {
+	var loadSequence = function (seq) {
 		current_sequence = seq;
 
 		if (seq >= sequence.lenth) {
@@ -252,37 +251,49 @@ var GameUI = (new function() {
 			buttons[sequence[seq][x] - 1].classList.add("active");
 		}
 
-	}
+	};
 
-	var gameOver = function() {
+	var gameOver = function () {
 		buzzer.play(1);
 		console.log("gameover");
-	}
+	};
 
-	var win = function() {
+	var win = function () {
 
-	}
+	};
 
-	var finish = function() {
+	var finish = function () {
 		console.log("finish");
 
-	}
+	};
 
-	this.load = function(seq) {
+	this.load = function (seq) {
 		sequence = seq;
 
-	}
-	this.start = function() {
+	};
+	this.start = function () {
 		isPlaying = true;
 		loadSequence(0);
 		start_time = 0 + new Date();
-	}
+	};
+
+	this.getHighScore = function (Callback) {
+		$.ajax({
+			url: "/highscore"
+		}).done(function (d) {
+			Callback(d);
+
+		}).error(function () {
+			Alert.show("error", "Error getting Highscore list");
+		});
+	};
+
 
 	/**
 	 * events
 	 */
 
-	$(document).on("click touchstart", '.fields', function(e) {
+	$(document).on("click touchstart", '.fields', function (e) {
 		e.preventDefault();
 		if (!isPlaying)
 			return;
@@ -314,9 +325,9 @@ var GameUI = (new function() {
 });
 
 /**
- * 
+ *
  */
-var Chat = (new function() {
+var Chat = (new function () {
 
 	var parent = document.querySelector("#chat-content");
 	var input = document.querySelector("#textfeld");
@@ -324,22 +335,22 @@ var Chat = (new function() {
 	var isTyping = false;
 	parent.innerHTML = "";
 
-	document.addEventListener('keydown', function(e) {
+	document.addEventListener('keydown', function (e) {
 		// offend the shit out of opponents
 		if (e.which == 89 && e.ctrlKey) {
 			Game.send('chat.offend', {
-				from : Game.userInfo.username
+				from: Game.userInfo.username
 			});
 		}
 
 	});
 
-	input.addEventListener('keydown', function(e) {
-		//e.stopPropagation();
+	input.addEventListener('keydown', function (e) {
+		// e.stopPropagation();
 		window.clearTimeout(typing_timeout);
-		typing_timeout = window.setTimeout(function() {
+		typing_timeout = window.setTimeout(function () {
 			Game.send('chat.typing.stop', {
-				from : Game.userInfo.username
+				from: Game.userInfo.username
 			});
 
 			isTyping = false;
@@ -347,7 +358,7 @@ var Chat = (new function() {
 
 		if (!isTyping) {
 			Game.send('chat.typing.start', {
-				from : Game.userInfo.username
+				from: Game.userInfo.username
 			});
 
 			isTyping = true;
@@ -355,15 +366,15 @@ var Chat = (new function() {
 
 		if (e.which == 13 && input.value != "") {
 			Game.send('chat.message', {
-				from : Game.userInfo.username,
-				message : input.value
+				from   : Game.userInfo.username,
+				message: input.value
 			});
 
 			input.value = "";
 		}
 	});
 
-	Game.receive("chat.message", function(d) {
+	Game.receive("chat.message", function (d) {
 
 		var msg = document.createElement("div");
 		msg.className = "message";
@@ -378,7 +389,7 @@ var Chat = (new function() {
 		parent.scrollTop = parent.scrollHeight;
 	});
 
-	Game.receive("chat.offend", function(d) {
+	Game.receive("chat.offend", function (d) {
 
 		if (d.from != Game.userInfo.username) {
 			offend.play(getRandomInt(1, 6));
@@ -392,7 +403,7 @@ var Chat = (new function() {
 
 	});
 
-	Game.receive("chat.typing.start", function(d) {
+	Game.receive("chat.typing.start", function (d) {
 
 		var msg = document.createElement("div");
 		msg.className = "typing";
@@ -403,7 +414,7 @@ var Chat = (new function() {
 
 	});
 
-	Game.receive("chat.typing.stop", function(d) {
+	Game.receive("chat.typing.stop", function (d) {
 		document.querySelector("#typing-" + escapeHtml(d.from)).remove();
 		parent.scrollTop = parent.scrollHeight;
 
@@ -414,14 +425,14 @@ var Chat = (new function() {
 /**
  * Sound FX Bank
  */
-var SoundBank = (function(Instrument, Amount) {
+var SoundBank = (function (Instrument, Amount) {
 
 	this.Default = "piano";
 	this.current = this.Default;
 	var clips = [];
 	this.clips = clips;
 
-	this.load = function(Instrument) {
+	this.load = function (Instrument) {
 		for (var i = 1; i <= Amount; ++i) {
 			var audioElement = document.createElement('audio');
 			audioElement.setAttribute('src', '/assets/afx/' + Instrument + "/" + i + ".mp3");
@@ -432,7 +443,7 @@ var SoundBank = (function(Instrument, Amount) {
 		this.current = Instrument;
 	}
 
-	this.play = function(tone) {
+	this.play = function (tone) {
 		var f = this.clips[tone - 1];
 		f.load();
 		f.play();
@@ -447,28 +458,28 @@ var countdown = new SoundBank("countdown", 4);
 var offend = new SoundBank("offend", 6);
 var buzzer = new SoundBank("buzzer", 1);
 
-Element.prototype.remove = function() {
+Element.prototype.remove = function () {
 	this.parentElement.removeChild(this);
-}
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+};
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
 	for (var i = 0, len = this.length; i < len; i++) {
 		if (this[i] && this[i].parentElement) {
 			this[i].parentElement.removeChild(this[i]);
 		}
 	}
-}
+};
 
 var entityMap = {
-	"&" : "&amp;",
-	"<" : "&lt;",
-	">" : "&gt;",
-	'"' : '&quot;',
-	"'" : '&#39;',
-	"/" : '&#x2F;'
+	"&": "&amp;",
+	"<": "&lt;",
+	">": "&gt;",
+	'"': '&quot;',
+	"'": '&#39;',
+	"/": '&#x2F;'
 };
 
 function escapeHtml(string) {
-	return String(string).replace(/[&<>"'\/]/g, function(s) {
+	return String(string).replace(/[&<>"'\/]/g, function (s) {
 		return entityMap[s];
 	});
 }

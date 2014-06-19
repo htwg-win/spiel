@@ -1,10 +1,13 @@
 package controllers;
 
+import models.Db;
 import models.Game;
+import play.libs.Json;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.WebSocket;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Application extends Controller {
 
@@ -12,7 +15,18 @@ public class Application extends Controller {
 		return ok(views.html.main.render());
 	}
 
+	public static Result highscore() {
+	ObjectNode result = Json.newObject();
+		String[] high = Db.highscores();
 	
+		for (int i=0; i < high.length; ++i) {
+			result.put(String.valueOf(i),high[i]);
+		}
+
+	
+
+		return ok(result);
+	}
 
 	public static WebSocket<String> socket() {
 		return new WebSocket<String>() {

@@ -14,8 +14,7 @@ public class Db {
 		try {
 			Class.forName("org.sqlite.JDBC");
 
-			conn = DriverManager
-					.getConnection("jdbc:sqlite:\\Workspace\\spiel\\SQLite\\game.sqlite");
+			conn = DriverManager.getConnection("jdbc:sqlite:SQLite\\game.sqlite");
 
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
@@ -41,33 +40,37 @@ public class Db {
 		}
 	}
 
-	public boolean create(String username, String password) {
+	public static boolean create(String username, String password) {
 		Db.getConnection();
 		try {
-		ResultSet rsLogin = stmt
-				.executeQuery("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = '"
-						+ username + "';");
-		String userDatabase = rsLogin.getString("username");
-		if (!username.equals(userDatabase)) {
-			return false;
-		}
 
-		String hashpassword = "";
-		try {
-			hashpassword = PasswordHash.createHash(password);
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InvalidKeySpecException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String salt = PasswordHash.getSaltString();
-		String sqlCreate = "INSERT INTO USER (USERNAME, PASSWORD, SALT)"
-				+ "VALUES ('" + username + "','" + hashpassword + "','" + salt
-				+ "');";
-		
-			stmt.executeUpdate(sqlCreate);
+			PreparedStatement prepStmt = conn.prepareStatement("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = ?;");
+			prepStmt.setString(1, username);
+			ResultSet rsLogin = prepStmt.executeQuery();
+
+			
+			if (rsLogin.next()) {
+				return false;
+			}
+			
+			String hashpassword = "";
+			try {
+				hashpassword = PasswordHash.createHash(password);
+			} catch (NoSuchAlgorithmException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidKeySpecException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String salt = PasswordHash.getSaltString();
+
+			PreparedStatement update = conn.prepareStatement("INSERT INTO USER (USERNAME, PASSWORD, SALT)" + "VALUES (?,?,?);");
+			update.setString(1, username);
+			update.setString(2, hashpassword);
+			update.setString(3, salt);
+			update.executeUpdate();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,23 +80,25 @@ public class Db {
 		return true;
 	}
 
-	public boolean login(String username, String password)
-			throws NoSuchAlgorithmException, InvalidKeySpecException {
+	public static boolean login(String username, String password) {
 		Db.getConnection();
 
 		String hashpassword = "";
 		String userDatabase_2 = "";
 
 		try {
-			ResultSet rsLogin = stmt
-					.executeQuery("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = '"
-							+ username + "';");
-			userDatabase_2 = rsLogin.getString("username");
 
-			if (!username.equals(userDatabase_2)) {
+			PreparedStatement prepStmt = conn.prepareStatement("SELECT USERNAME, PASSWORD, SALT FROM USER WHERE USERNAME = ?;");
+			prepStmt.setString(1, username);
+			ResultSet rsLogin = prepStmt.executeQuery();
+
+			
+
+			if (!rsLogin.next()) {
 				return false;
 			}
-
+			userDatabase_2 = rsLogin.getString("username");
+			
 			hashpassword = rsLogin.getString("password");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -102,20 +107,32 @@ public class Db {
 			Db.closeConnection();
 		}
 
-		if (!PasswordHash.validatePassword(password, hashpassword)) {
-			return false;
-		} else {
-			return true;
+		try {
+			if (!PasswordHash.validatePassword(password, hashpassword)) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		return false;
 
 	}
 
-	public void win(String username) {
+	public static void win(String username) {
 		Db.getConnection();
-		String sqlWin = "UPDATE USER SET WINS = WINS+1 WHERE USERNAME = '"
-				+ username + "';";
+
 		try {
-			stmt.executeUpdate(sqlWin);
+			PreparedStatement update = conn.prepareStatement("UPDATE USER SET WINS = WINS+1 WHERE USERNAME = ?;");
+			update.setString(1, username);
+
+			update.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,19 +141,19 @@ public class Db {
 		}
 	}
 
-	public String[] highscores() {
+	public static String[] highscores() {
 		Db.getConnection();
 
 		String[] highscoretable = new String[10];
 
 		try {
-			ResultSet rsTable = stmt
-					.executeQuery("SELECT USERNAME, WINS FROM USER ORDER BY WINS DESC LIMIT 10;");
+
+			ResultSet rsTable = stmt.executeQuery("SELECT USERNAME, WINS FROM USER ORDER BY WINS DESC LIMIT 10;");
 			int i = 0;
 			while (rsTable.next()) {
 				int wins = rsTable.getInt("wins");
-				highscoretable[i] = rsTable.getString("username") + ":" + wins;
-
+				highscoretable[i++] = rsTable.getString("username")+":"+wins;
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

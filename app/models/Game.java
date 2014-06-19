@@ -60,18 +60,18 @@ public class Game {
 	 */
 	private static int execEvent(String event, JSONObject Data, WebSocket.In<String> in, WebSocket.Out<String> out) {
 		int returnCode = 0;
-
+		String username = null;
+		String password = null;
 		JSONObject d = new JSONObject();
 		System.out.println(event);
 
 		switch (event) {
 		case "user.login":
-			String username = null;
-			boolean login = true;
 
 			try {
 				username = escapeHtml4(Data.get("username").toString());
-
+				password = Data.get("password").toString();
+				boolean login = Db.login(username, password);
 				if (!username.equals("") && !members.containsKey(username) && login) {
 					members.put(username, out);
 					usernames.put(out.toString(), username);
@@ -80,8 +80,12 @@ public class Game {
 					notifyAll(username + " has entered the game (" + members.size() + " players)", "success");
 					startGame();
 				} else {
+					if (!login) {
+						notifyOne("Login failed.", out, "error");
+					} else {
+						notifyOne("'" + username + "' is already logged in or empty", out, "error");
+					}
 
-					notifyOne("'" + username + "' is already logged in or empty", out, "error");
 				}
 
 			} catch (JSONException e) {
@@ -96,6 +100,24 @@ public class Game {
 			// dummy, always login
 
 			returnCode = -1;
+			break;
+
+		case "user.create":
+			try {
+				username = escapeHtml4(Data.get("username").toString());
+				password = Data.get("password").toString();
+
+				if (Db.create(username, password)) {
+					triggerOne("user.create.success", d, out);
+					notifyOne("Account created", out, "sucess");
+					return -1;
+				}
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			notifyOne("Create Failed", out, "error");
 			break;
 		case "user.getInfo":
 
@@ -259,20 +281,20 @@ public class Game {
 		int buttons = 0;
 		int number = 0;
 		for (int i = 0; i < rounds; ++i) {
-			buttons =5;
-			
+			buttons = 5;
+
 			for (int j = 0; j < buttons; ++j) {
-				
-				while(true){
+
+				while (true) {
 					number = randomInt(1, 9);
-					if(Arrays.binarySearch(sequence[i], number) >= 0){
+					if (Arrays.binarySearch(sequence[i], number) >= 0) {
 						continue;
 					}
-					
+
 					break;
 				}
-				
-				sequence[i][4-j] = number;
+
+				sequence[i][4 - j] = number;
 				Arrays.sort(sequence[i]);
 			}
 		}
