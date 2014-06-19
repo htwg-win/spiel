@@ -4,7 +4,6 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /chat                          controllers.Application.chat
 GET     /socket                     controllers.Application.socket
 
 # Map static resources from the /public folder to the /assets URL path

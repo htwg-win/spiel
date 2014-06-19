@@ -326,20 +326,20 @@ var Chat = (new function() {
 
 	document.addEventListener('keydown', function(e) {
 		// offend the shit out of opponents
-		if (e.which == 79) {
+		if (e.which == 89 && e.ctrlKey) {
 			Game.send('chat.offend', {
-				from : Game.userInfo.username,
+				from : Game.userInfo.username
 			});
 		}
 
 	});
 
 	input.addEventListener('keydown', function(e) {
-		e.stopPropagation();
+		//e.stopPropagation();
 		window.clearTimeout(typing_timeout);
 		typing_timeout = window.setTimeout(function() {
 			Game.send('chat.typing.stop', {
-				from : Game.userInfo.username,
+				from : Game.userInfo.username
 			});
 
 			isTyping = false;
@@ -347,7 +347,7 @@ var Chat = (new function() {
 
 		if (!isTyping) {
 			Game.send('chat.typing.start', {
-				from : Game.userInfo.username,
+				from : Game.userInfo.username
 			});
 
 			isTyping = true;
