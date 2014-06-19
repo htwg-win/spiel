@@ -16,14 +16,12 @@ public class Application extends Controller {
 	}
 
 	public static Result highscore() {
-	ObjectNode result = Json.newObject();
+		ObjectNode result = Json.newObject();
 		String[] high = Db.highscores();
-	
-		for (int i=0; i < high.length; ++i) {
-			result.put(String.valueOf(i),high[i]);
-		}
 
-	
+		for (int i = 0; i < high.length; ++i) {
+			result.put(String.valueOf(i), high[i]);
+		}
 
 		return ok(result);
 	}

@@ -89,15 +89,8 @@ public class Game {
 				}
 
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				// e.printStackTrace();
-
 				notifyOne("Username not specified", out, "error");
-
 			}
-			// do DB login test
-
-			// dummy, always login
 
 			returnCode = -1;
 			break;
@@ -113,8 +106,7 @@ public class Game {
 					return -1;
 				}
 			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				notifyOne("Username not specified", out, "error");
 			}
 
 			notifyOne("Create Failed", out, "error");
@@ -125,8 +117,7 @@ public class Game {
 				d.put("id", out.toString());
 				triggerOne("user.info", d, out);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				notifyOne("ups..Something went wrong...", out, "error");
 			}
 
 			break;

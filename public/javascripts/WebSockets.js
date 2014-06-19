@@ -8,12 +8,12 @@ var Event = new (function () {
 		} else {
 			this.on('ready', f);
 		}
-	}
+	};
 
 	this.readyTrigger = function () {
 		isReady = true;
 		this.trigger('ready');
-	}
+	};
 
 	this.trigger = function (e, p) {
 
@@ -33,14 +33,14 @@ var Event = new (function () {
 				events[e][i].call(this, P);
 			}
 		}
-	}
+	};
 
 	this.on = function (e, f) {
 		if (typeof events[e] != "object") {
 			events[e] = [];
 		}
 		events[e].push(f);
-	}
+	};
 
 	this.off = function (e) {
 		events[e] = null;
@@ -82,7 +82,7 @@ var GameAPI = (function () {
 				Socket.send('{"name":"heartbeat","data":{}}');
 			}, hearbeat_interval);
 
-		}
+		};
 
 		Socket.onmessage = function (evt) {
 			console.log("Data received: " + evt.data);
@@ -95,7 +95,7 @@ var GameAPI = (function () {
 		Socket.onerror = function (err) {
 
 			console.log(err);
-		}
+		};
 
 		Socket.onclose = function () {
 			console.log("WS Connection Closed");
@@ -103,7 +103,7 @@ var GameAPI = (function () {
 
 			// retry
 			SocketInit();
-		}
+		};
 
 		self.socket = Socket;
 
@@ -124,7 +124,7 @@ var GameAPI = (function () {
 
 		// Init Socket
 		SocketInit();
-	}
+	};
 
 	this.send = function (Event, Data) {
 		var raw = {
@@ -132,7 +132,7 @@ var GameAPI = (function () {
 			data: Data
 		};
 		Socket.send(JSON.stringify(raw));
-	}
+	};
 
 	this.receive = function (name, Callback) {
 		Event.on(name, Callback);
@@ -167,7 +167,7 @@ var Alert = new function () {
 
 	}
 
-}
+};
 
 var Game = new GameAPI();
 Game.init();
@@ -193,8 +193,6 @@ Game.receive("game.start", function (d) {
 	Alert.show("success", "new Game starting in " + d.startIn + "s");
 	window.setTimeout(function () {
 		GameUI.load(d.sequence);
-
-		console.log(d.sequence);
 		var c = document.createElement("div");
 		c.id = "countdown";
 		c.innerHTML = '<div id="number-1">1</div><div id="number-2">2</div><div id="number-3">3</div>';
@@ -204,21 +202,21 @@ Game.receive("game.start", function (d) {
 
 		window.setTimeout(function () {
 			countdown.play(3);
-		}, 1000 * 0);
+		}, 0);
 
 		window.setTimeout(function () {
 			countdown.play(2);
-		}, 1000 * 1);
+		}, 1000);
 
 		window.setTimeout(function () {
 			countdown.play(1);
-		}, 1000 * 2);
+		}, 200);
 
 		window.setTimeout(function () {
 			countdown.play(4);
 			document.body.removeChild(c)
 			GameUI.start();
-		}, 1000 * 3);
+		}, 3000);
 
 	}, d.startIn * 1000);
 
@@ -287,7 +285,6 @@ var GameUI = (new function () {
 			Alert.show("error", "Error getting Highscore list");
 		});
 	};
-
 
 	/**
 	 * events
@@ -441,13 +438,13 @@ var SoundBank = (function (Instrument, Amount) {
 		}
 
 		this.current = Instrument;
-	}
+	};
 
 	this.play = function (tone) {
 		var f = this.clips[tone - 1];
 		f.load();
 		f.play();
-	}
+	};
 
 	this.load(Instrument);
 
