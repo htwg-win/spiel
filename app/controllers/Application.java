@@ -12,9 +12,7 @@ public class Application extends Controller {
 		return ok(views.html.main.render());
 	}
 
-	public static Result chat() {
-		return ok(views.html.chat.render());
-	}
+	
 
 	public static WebSocket<String> socket() {
 		return new WebSocket<String>() {
