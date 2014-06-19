@@ -131,3 +131,12 @@ body {
 	right: 0%;
 	background-color: white;
 }
+
+#manual {
+	position: absolute;
+	left: 20%;
+	right: 20%;
+	top: 30%;
+	bottom: 10%;
+	background-color: yellow;
+}
