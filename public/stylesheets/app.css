@@ -49,22 +49,18 @@ body,html {
 	color: #5dd571
 }
 
-#chat-content {
-	height: 85%;
-	overflow-y: scroll;
-}
-
 .typing {
 	color: #ccc;
 }
 
 .fields {
+	position: absolute;
 	background: url(../gfx/button.png);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
 	height: 10vh;
-	width: 18vw;
+	width: 32.3%;
 	text-align: center;
 	padding-top: 5vh;
 	font-size: 5vh;
