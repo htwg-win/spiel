@@ -48,11 +48,10 @@ public class Db {
 			prepStmt.setString(1, username);
 			ResultSet rsLogin = prepStmt.executeQuery();
 
-			
 			if (rsLogin.next()) {
 				return false;
 			}
-			
+
 			String hashpassword = "";
 			try {
 				hashpassword = PasswordHash.createHash(password);
@@ -84,7 +83,6 @@ public class Db {
 		Db.getConnection();
 
 		String hashpassword = "";
-		String userDatabase_2 = "";
 
 		try {
 
@@ -92,13 +90,10 @@ public class Db {
 			prepStmt.setString(1, username);
 			ResultSet rsLogin = prepStmt.executeQuery();
 
-			
-
 			if (!rsLogin.next()) {
 				return false;
 			}
-			userDatabase_2 = rsLogin.getString("username");
-			
+
 			hashpassword = rsLogin.getString("password");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -152,8 +147,8 @@ public class Db {
 			int i = 0;
 			while (rsTable.next()) {
 				int wins = rsTable.getInt("wins");
-				highscoretable[i++] = rsTable.getString("username")+":"+wins;
-				
+				highscoretable[i++] = rsTable.getString("username") + ":" + wins;
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
