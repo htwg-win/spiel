@@ -20,11 +20,12 @@ $().ready(function() {
 	$d.on('click touchstart', "#logout", function() {
 		location.href = location.href;
 	})
-
+	
 });
 
 Game.receive("user.login.success", function() {
 	$(".login").hide()
+	$("#manual").hide()
 	$("#fields").show()
 	$("#menu").show();
 	$("#chat").show();
