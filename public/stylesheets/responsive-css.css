@@ -4,7 +4,7 @@
 	}
 	#fields {
 		position: absolute;
-		top: 0%;
+		top: 2%;
 		left: 0%;
 		right: 0%;
 		height: 70vh;
@@ -21,7 +21,7 @@
 	}
 	#menu {
 		position: absolute;
-		top: 72vh;
+		top: 74vh;
 		left: 0%;
 		right: 0%;
 		height: 300px;
@@ -31,9 +31,12 @@
 		background-color: black;
 	}
 	#messagewindow {
-		visibility: hidden;
-	}
-	#chat {
-		visibility: hidden;
+		position: absolute;
+		padding: 0.25em;
+		top: 0%;
+		bottom: 0%;
+		left: 45%;
+		right: 0%;
+		background-color: white;
 	}
 }
