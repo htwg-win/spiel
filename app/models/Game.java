@@ -125,6 +125,15 @@ public class Game {
 		case "message":
 
 			break;
+		case "game.finish":
+			try {
+				finish(Data.get("from").toString());
+				trigger(event, Data);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 
 		case "heartbeat":
 
@@ -238,8 +247,12 @@ public class Game {
 
 	}
 
-	public static void gameOver() {
-
+	public static void finish(String username) {
+		if (playing) {
+			playing = false;
+			Db.win(username);
+			startGame();
+		}
 	}
 
 	public static boolean startGame() {
@@ -255,6 +268,7 @@ public class Game {
 				e.printStackTrace();
 			}
 
+			playing = true;
 			trigger("game.start", raw);
 			return true;
 		}

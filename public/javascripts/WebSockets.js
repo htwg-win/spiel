@@ -142,6 +142,7 @@ var GameAPI = (function () {
 
 var Alert = new function () {
 	var element = document.querySelector('#notify');
+	var big = document.querySelector('#message-big');
 	var messageQueue = [];
 
 	this.show = function (type, str) {
@@ -165,6 +166,15 @@ var Alert = new function () {
 
 		}, 3000);
 
+	};
+
+	this.showBig = function (str, length) {
+		big.innerHTML = "<div>" + str + "</div>";
+		big.className = "active";
+		big.style.webkitAnimationDuratation = length + "s";
+		window.setTimeout(function () {
+			big.className = "";
+		}, length * 1000);
 	}
 
 };
@@ -191,6 +201,7 @@ Game.receive("user.login.success", function (d) {
 
 Game.receive("game.start", function (d) {
 	Alert.show("success", "new Game starting in " + d.startIn + "s");
+	countdownFrom10();
 	window.setTimeout(function () {
 		GameUI.load(d.sequence);
 		var c = document.createElement("div");
@@ -210,7 +221,7 @@ Game.receive("game.start", function (d) {
 
 		window.setTimeout(function () {
 			countdown.play(1);
-		}, 200);
+		}, 2000);
 
 		window.setTimeout(function () {
 			countdown.play(4);
@@ -218,12 +229,34 @@ Game.receive("game.start", function (d) {
 			GameUI.start();
 		}, 3000);
 
-	}, d.startIn * 1000);
+	}, (d.startIn - 3) * 1000);
 
 });
 
+Game.receive("game.finish", function (data) {
+	isPlaying = false;
+	updateHighScore();
+	GameUI.reset();
+	if (data.from == Game.userInfo.username) {
+		Alert.showBig("WIN", 2);
+	} else {
+		Alert.showBig("GAME OVER", 2);
+	}
+});
+
+function countdownFrom10() {
+	var parent = document.querySelector('#c10');
+	parent.innerHTML = 11;
+	for (var i = 0; i < 11; ++i) {
+		window.setTimeout(function () {
+			parent.innerHTML = parseInt(parent.innerHTML) - 1;
+		}, i * 1000);
+	}
+}
+
 var GameUI = (new function () {
 	var sequence = {};
+	this.sequence = sequence;
 	var current_sequence = 0;
 	var start_time = 0;
 	var isPlaying = false;
@@ -235,13 +268,12 @@ var GameUI = (new function () {
 
 	var loadSequence = function (seq) {
 		current_sequence = seq;
-
-		if (seq >= sequence.lenth) {
+		if (seq >= (sequence.length)) {
 			finish();
+			return;
 		}
 		for (var x = 0; x < sequence[seq].length; ++x) {
 			var n = sequence[seq][x] - 1;
-
 			if (n == -1) {
 				sequence[current_sequence].splice(x, 1);
 				continue;
@@ -252,8 +284,12 @@ var GameUI = (new function () {
 	};
 
 	var gameOver = function () {
+
+	};
+
+	var mistake = function () {
 		buzzer.play(1);
-		console.log("gameover");
+		Alert.showBig("ups", 1);
 	};
 
 	var win = function () {
@@ -261,14 +297,23 @@ var GameUI = (new function () {
 	};
 
 	var finish = function () {
-		console.log("finish");
 
+		Game.send("game.finish", {
+			from: Game.userInfo.username
+		});
 	};
 
 	this.load = function (seq) {
 		sequence = seq;
 
 	};
+
+	this.reset = function () {
+		for (var t in buttons) {
+			buttons[t].classList.remove("active");
+		}
+	};
+
 	this.start = function () {
 		isPlaying = true;
 		loadSequence(0);
@@ -296,7 +341,6 @@ var GameUI = (new function () {
 			return;
 		var index = sequence[current_sequence].indexOf(parseInt(this.dataset.number));
 		if (index != -1) {
-
 			piano.play(this.dataset.number);
 			this.classList.toggle("active");
 			if (sequence[current_sequence].length == 1) {
@@ -313,7 +357,7 @@ var GameUI = (new function () {
 
 			console.log(sequence);
 		} else {
-			gameOver();
+			mistake();
 
 		}
 
@@ -487,4 +531,25 @@ function escapeHtml(string) {
  */
 function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function updateHighScore() {
+	GameUI.getHighScore(function(list) {
+		var parent = document.querySelector('#highscore');
+		var innerHTML = [];
+		var player;
+		var index;
+		for ( var place in list) {
+			player = list[place];
+
+			if (player != null) {
+				index = player.indexOf(":");
+				innerHTML.push('<div>' + (parseInt(place) + 1) + '. ' + player.substr(0, index) + ' (' + player.substr(index + 1) + ')</div>');
+			}
+
+		}
+
+		parent.innerHTML = innerHTML.join("");
+	});
 }

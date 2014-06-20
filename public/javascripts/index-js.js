@@ -40,22 +40,4 @@ Game.receive("user.create.success", function() {
 	updateHighScore();
 });
 
-function updateHighScore() {
-	GameUI.getHighScore(function(list) {
-		var parent = document.querySelector('#highscore');
-		var innerHTML = [];
-		var player;
-		var index;
-		for ( var place in list) {
-			player = list[place];
 
-			if (player != null) {
-				index = player.indexOf(":");
-				innerHTML.push('<div>' + (parseInt(place) + 1) + '. ' + player.substr(0, index) + ' (' + player.substr(index + 1) + ')</div>');
-			}
-
-		}
-
-		parent.innerHTML = innerHTML.join("");
-	});
-}
