@@ -4,6 +4,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 
+import controllers.Application;
+import play.api.Play;
+
 public class Db {
 
 	static Connection conn = null;
@@ -14,7 +17,7 @@ public class Db {
 		try {
 			Class.forName("org.sqlite.JDBC");
 
-			conn = DriverManager.getConnection("jdbc:sqlite:/SQLite/game.sqlite");
+			conn = DriverManager.getConnection("jdbc:sqlite:"+Application.file);
 
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
