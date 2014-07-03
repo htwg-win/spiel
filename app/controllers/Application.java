@@ -11,7 +11,7 @@ import play.mvc.WebSocket;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Application extends Controller {
-	public static String file = Play.application().getFile("/SQLite/game.sqlite").toString();
+	public static String file = Play.application().getFile("/../../../SQLite/game.sqlite").toString();
 	
 	
 	public static Result index() {
