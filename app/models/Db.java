@@ -14,7 +14,7 @@ public class Db {
 		try {
 			Class.forName("org.sqlite.JDBC");
 
-			conn = DriverManager.getConnection("jdbc:sqlite:SQLite/game.sqlite");
+			conn = DriverManager.getConnection("jdbc:sqlite:/webtech-games/SQLite/game.sqlite");
 
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
