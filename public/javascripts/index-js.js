@@ -1,7 +1,11 @@
 var $d;
 
-$().ready(function() {
+$(document).ready(function() {
 
+
+	console.log('document loaded');
+	
+	
 	$d = $(document);
 	$d.on('click touchstart', '#login', function() {
 		Game.send("user.login", {
