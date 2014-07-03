@@ -39,11 +39,13 @@ public class Game {
 		in.onClose(new Callback0() {
 			public void invoke() {
 				String user = usernames.get(out.toString());
+				if(user != "null"){
 				String msg = (user + " has quit");
 				Game.notifyAll(msg);
 				members.remove(user);
 				usernames.remove(out.toString());
 				System.out.println(":out: " + user);
+				}
 			}
 		});
 
